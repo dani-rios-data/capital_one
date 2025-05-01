@@ -1,0 +1,817 @@
+/* Reset y estilos base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background-color: #f5f5f5; /* Color de fondo similar al sitio de Capital One */
+  color: #333;
+  line-height: 1.5;
+}
+
+/* Contenedor principal - ahora solo para el contenido */
+.dashboard-container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+  padding-top: 40px; /* Mayor espaciado superior para compensar el header fijo */
+}
+
+/* Área fija que contiene el header y las pestañas - a todo ancho */
+.fixed-header-area {
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 100;
+  width: 100%;
+  border-bottom: 1px solid #e2e8f0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* Contenedor para centrar el contenido del header */
+.header-content {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 16px 20px 0;
+}
+
+/* Header del dashboard */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 0 16px;
+  position: relative;
+}
+
+/* Logo de la compañía */
+.logo-container {
+  flex: 0 0 auto;
+}
+
+.company-logo {
+  height: 35px;
+  width: auto;
+}
+
+/* Título centralizado */
+.dashboard-title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 20px;
+  font-weight: 600;
+  color: #003057; /* Azul oscuro de Capital One */
+  text-align: center;
+}
+
+/* Badge de analytics */
+.analytics-badge {
+  flex: 0 0 auto;
+  background-color: #d03027; /* Rojo de Capital One */
+  color: white;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Navegación de pestañas */
+.tabs-container {
+  margin-bottom: 0;
+  padding: 0 16px;
+}
+
+.tabs-nav {
+  display: flex;
+  list-style: none;
+  gap: 24px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.tab-item {
+  margin: 0;
+}
+
+.tab-link {
+  display: inline-block;
+  padding: 12px 0;
+  color: #6e6e6e;
+  font-size: 15px;
+  text-decoration: none;
+  font-weight: 500;
+  border: none;
+  background: none;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.2s;
+}
+
+.tab-link:hover {
+  color: #003057;
+}
+
+.tab-link.active {
+  color: #003057; /* Azul Capital One para tab activo */
+  font-weight: 600;
+}
+
+.tab-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #003057; /* Azul Capital One para indicador */
+}
+
+/* Contenido principal */
+.dashboard-content {
+  display: grid;
+  gap: 20px;
+  padding-top: 20px; /* Espacio para compensar el header fijo */
+}
+
+/* Tarjetas de gráficas */
+.chart-section {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin-bottom: 20px;
+  border: 1px solid #e2e8f0;
+}
+
+.chart-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chart-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #003057; /* Azul Capital One para título de gráfica */
+  margin: 0;
+}
+
+.chart-filter {
+  flex: 0 0 auto;
+  position: relative;
+}
+
+.chart-body {
+  padding: 0 12px 5px;
+  height: 380px;
+}
+
+/* Estilos para la tarjeta de gráficos */
+.chart-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 350px;
+  padding-bottom: 10px;
+}
+
+/* Estilos para Recharts */
+.recharts-wrapper {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.recharts-cartesian-grid-horizontal line,
+.recharts-cartesian-grid-vertical line {
+  stroke: #e5e7eb; /* Gris muy claro para la cuadrícula */
+  stroke-dasharray: 3 3;
+  stroke-opacity: 0.8;
+}
+
+.recharts-legend-wrapper {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  padding-top: 0 !important;
+  border-top: 1px solid #f0f0f0 !important;
+  margin-top: 0 !important;
+}
+
+.recharts-default-legend {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  margin: 0 !important;
+  padding: 4px 0 !important;
+}
+
+.recharts-legend-item {
+  margin-right: 12px !important;
+  align-items: center !important;
+  display: flex !important;
+  padding: 1px 4px !important;
+}
+
+.recharts-legend-item-text {
+  font-size: 11px !important;
+  color: #4b5563 !important;
+  margin-left: 4px !important;
+  font-weight: 500 !important;
+}
+
+.recharts-legend-item:last-child {
+  margin-right: 0 !important;
+}
+
+.recharts-cartesian-axis-tick-value {
+  font-size: 12px;
+  fill: #6b7280; /* Gris para el texto de los ejes */
+}
+
+/* Estilos adicionales para los ejes de las gráficas */
+.recharts-cartesian-axis-line {
+  stroke: #cbd5e1;
+  stroke-width: 1;
+}
+
+.recharts-xAxis .recharts-cartesian-axis-tick-value {
+  font-weight: 500;
+}
+
+.recharts-yAxis .recharts-cartesian-axis-tick-value {
+  font-weight: 500;
+}
+
+.recharts-tooltip-wrapper {
+  opacity: 1 !important;
+  visibility: visible !important;
+  z-index: 9999 !important;
+  pointer-events: none !important;
+  transform: none !important;
+}
+
+.recharts-default-tooltip {
+  background-color: white !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 4px !important;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Colores específicos para las líneas */
+.recharts-line-curve[stroke="#2C4197"] {
+  stroke: #003057; /* Azul Capital One para la primera línea */
+}
+
+.recharts-line-curve[stroke="#E53E3E"] {
+  stroke: #d03027; /* Rojo Capital One para la segunda línea */
+}
+
+.recharts-line-curve[stroke="#06B6D4"] {
+  stroke: #0097CF; /* Azul claro */
+}
+
+.recharts-line-curve[stroke="#4AAEE8"] {
+  stroke: #38bdf8; /* Azul claro alternativo */
+}
+
+/* Ajustes para los puntos */
+.recharts-dot {
+  stroke-width: 1;
+  r: 3.5;
+}
+
+.recharts-line-dots > circle {
+  fill: white;
+  stroke-width: 2;
+}
+
+/* Ajustes específicos para los tooltips */
+.recharts-tooltip-item-name {
+  font-weight: 600 !important;
+}
+
+.recharts-tooltip-item-value {
+  font-weight: 500 !important;
+}
+
+/* Estilos para el selector de filtro personalizado */
+.brand-filter-container {
+  position: relative;
+}
+
+.filter-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: white;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  padding: 6px 10px;
+  font-size: 14px;
+  color: #334155;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+
+.filter-button:hover {
+  border-color: #94a3b8;
+  background-color: #f8fafc;
+}
+
+.filter-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #0066eb;
+  color: white;
+  font-size: 12px;
+  font-weight: 500;
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  padding: 2px;
+}
+
+.filter-arrow {
+  margin-left: 2px;
+  font-size: 12px;
+  color: #64748b;
+}
+
+/* Estilos para el dropdown de marcas con checkboxes */
+.brand-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 4px;
+  background-color: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  width: 280px;
+  z-index: 50;
+  max-height: 400px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-dropdown-header {
+  padding: 10px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e2e8f0;
+  background-color: #f8fafc;
+}
+
+.brand-dropdown-title {
+  font-weight: 500;
+  font-size: 14px;
+  color: #475569;
+}
+
+.brand-dropdown-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+}
+
+.brand-action-link {
+  color: #0066eb;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-size: 13px;
+}
+
+.brand-action-link:hover {
+  text-decoration: underline;
+}
+
+.brand-action-separator {
+  color: #cbd5e1;
+}
+
+.brand-dropdown-items {
+  overflow-y: auto;
+  max-height: 350px;
+  padding: 6px 0;
+}
+
+.brand-dropdown-item {
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.brand-dropdown-item:hover {
+  background-color: #f1f5f9;
+}
+
+.brand-checkbox {
+  display: flex;
+  align-items: center;
+}
+
+.brand-checkbox-input {
+  margin-right: 8px;
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+}
+
+.brand-checkbox-label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 14px;
+  color: #334155;
+  user-select: none;
+  width: 100%;
+}
+
+.brand-color-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 8px;
+  display: inline-block;
+}
+
+/* Estilos para el Select personalizado */
+.brand-multi-select {
+  min-width: 220px;
+}
+
+.select__control {
+  border: 1px solid #cbd5e1 !important;
+  box-shadow: none !important;
+  min-height: 34px !important;
+}
+
+.select__control:hover {
+  border-color: #94a3b8 !important;
+}
+
+.select__control--is-focused {
+  border-color: #0066eb !important;
+}
+
+.select__menu {
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+}
+
+.select__option--is-selected {
+  background-color: #0066eb !important;
+}
+
+.select__option--is-focused:not(.select__option--is-selected) {
+  background-color: #f1f5f9 !important;
+}
+
+.select__multi-value {
+  background-color: #e8f2ff !important;
+  border-radius: 3px !important;
+}
+
+.select__multi-value__label {
+  color: #0066eb !important;
+  font-size: 12px !important;
+  padding: 2px 8px !important;
+}
+
+.select__multi-value__remove {
+  color: #64748b !important;
+}
+
+.select__multi-value__remove:hover {
+  background-color: #d1e0f9 !important;
+  color: #ef4444 !important;
+}
+
+/* Clase para el contenido de las pestañas */
+.tab-content {
+  padding: 16px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .chart-body {
+    height: 350px; /* Altura para tablets */
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-container {
+    padding: 12px;
+  }
+  
+  .tabs-nav {
+    overflow-x: auto;
+    width: 100%;
+  }
+  
+  .chart-body {
+    height: 300px; /* Altura para móviles */
+  }
+}
+
+/* Estilos para el tooltip personalizado */
+.custom-tooltip {
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  border: 1px solid #e0e0e0;
+  min-width: 280px;
+  max-width: 320px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  overflow: hidden;
+  font-size: 12px;
+  pointer-events: auto;
+  transform-origin: 0 0;
+  opacity: 1 !important;
+  visibility: visible !important;
+  z-index: 9999 !important;
+  transition: none !important;
+  animation: tooltip-appear 0.15s ease-out;
+}
+
+@keyframes tooltip-appear {
+  from {
+    opacity: 0.7;
+    transform: scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.tooltip-portal {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: visible !important;
+  pointer-events: none !important;
+  z-index: 9999 !important;
+}
+
+.custom-tooltip-header {
+  border-top: 3px solid #0066eb;
+  padding: 12px; /* Reducido el padding */
+}
+
+.custom-tooltip-title {
+  font-size: 14px; /* Reducido de 16px */
+  font-weight: 500;
+  color: #333;
+  margin: 0;
+}
+
+.custom-tooltip-items {
+  width: 100%;
+  max-height: 250px; /* Establecer una altura máxima fija */
+  overflow-y: auto !important; /* Forzar el scroll vertical cuando sea necesario */
+  overflow-x: hidden;
+  padding-right: 2px;
+}
+
+/* Asegurar que los scrollbars sean visibles en todos los elementos del tooltip que puedan necesitarlos */
+.custom-tooltip-items::-webkit-scrollbar,
+.custom-tooltip *::-webkit-scrollbar {
+  width: 8px; /* Ligeramente más ancho */
+  display: block;
+}
+
+.custom-tooltip-items::-webkit-scrollbar-track,
+.custom-tooltip *::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+}
+
+.custom-tooltip-items::-webkit-scrollbar-thumb,
+.custom-tooltip *::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  border: 2px solid rgba(255, 255, 255, 0.7);
+}
+
+.custom-tooltip-items::-webkit-scrollbar-thumb:hover,
+.custom-tooltip *::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.custom-tooltip-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px; /* Reducido de 12px 16px */
+  border-top: 1px solid #f0f0f0;
+  min-height: 36px; /* Reducido de 48px */
+}
+
+.custom-tooltip-label {
+  display: flex;
+  align-items: center;
+}
+
+.custom-tooltip-color {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  margin-right: 12px;
+  display: inline-block;
+  flex-shrink: 0; /* Evita que se encoja */
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.2); /* Sombra sutil */
+}
+
+.custom-tooltip-text {
+  font-size: 12px; /* Reducido de 14px */
+  color: #333;
+}
+
+.custom-tooltip-value {
+  font-size: 12px; /* Reducido de 14px */
+  font-weight: 500;
+  color: #111;
+  text-align: right;
+}
+
+.custom-tooltip-total {
+  background-color: #f7f7f7;
+  padding: 8px 12px; /* Reducido de 12px 16px */
+  border-top: 1px solid #e0e0e0;
+  text-align: center;
+}
+
+.custom-tooltip-total-text {
+  font-size: 13px; /* Reducido de 14px */
+  font-weight: 600;
+  color: #333;
+}
+
+/* Asegurar que el tooltip sea visible en ambos gráficos */
+.chart-container {
+  position: relative !important;
+}
+
+/* Mejorar la visualización del cursor en el gráfico */
+.recharts-active-dot {
+  cursor: pointer;
+}
+
+.recharts-curve.recharts-line-curve {
+  cursor: crosshair;
+}
+
+/* Estilo específico para tooltip de gráfico de dispositivos */
+#device-chart-container .recharts-tooltip-wrapper {
+  margin-top: 0 !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+/* Estilos específicos para cada gráfico */
+#device-chart-container .recharts-active-dot,
+#brand-chart-container .recharts-active-dot {
+  cursor: pointer;
+  transform: scale(1.2);
+}
+
+/* Estilos para el scrollbar en la tooltip */
+.custom-tooltip::-webkit-scrollbar {
+  width: 8px; /* Ligeramente más ancho */
+}
+
+.custom-tooltip::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+}
+
+.custom-tooltip::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  border: 2px solid rgba(255, 255, 255, 0.7);
+}
+
+.custom-tooltip::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+/* Arreglo específico para Firefox */
+.custom-tooltip {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.3) rgba(0, 0, 0, 0.05);
+}
+
+/* Ajustar la opacidad del tooltip para hacerlo más visible */
+.custom-tooltip {
+  opacity: 1 !important;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Contenedor scrollable dentro del tooltip */
+.custom-tooltip-scrollable-content {
+  width: 100%;
+  display: block;
+}
+
+/* Asegurar que los elementos del tooltip no se deformen */
+.custom-tooltip-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  border-top: 1px solid #f0f0f0;
+  min-height: 36px;
+  width: 100%;
+}
+
+/* Mejoras para la usabilidad del tooltip */
+.custom-tooltip {
+  opacity: 1 !important;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 6px;
+  transition: opacity 0.2s ease-out, transform 0.2s ease-out !important;
+}
+
+/* Animación para mostrar que hay más contenido */
+@keyframes pulseScroll {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(3px); }
+  100% { transform: translateY(0); }
+}
+
+/* Indicador de scroll */
+.scroll-indicator {
+  animation: pulseScroll 1.5s ease-in-out infinite;
+}
+
+/* Mejorar la apariencia del scrollbar en el tooltip */
+.custom-tooltip-items::-webkit-scrollbar {
+  width: 8px;
+  background-color: rgba(0, 0, 0, 0.03);
+  border-radius: 4px;
+}
+
+.custom-tooltip-items::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+}
+
+.custom-tooltip-items::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Mejorar la apariencia de los items dentro del tooltip */
+.custom-tooltip-item {
+  transition: background-color 0.15s ease;
+  border-radius: 4px;
+  margin: 1px 0;
+}
+
+.custom-tooltip-item:hover {
+  background-color: rgba(0, 102, 235, 0.08);
+}
+
+/* Destacar el título del tooltip */
+.custom-tooltip-title {
+  font-weight: 600;
+  color: #0066eb;
+}
+
+/* Mejorar el aspecto del total */
+.custom-tooltip-total {
+  background-color: #f8faff;
+}
+
+.custom-tooltip-total-text {
+  font-weight: 600;
+  color: #0066eb;
+}

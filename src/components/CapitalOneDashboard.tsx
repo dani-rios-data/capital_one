@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import TimeSeriesTab from './TimeSeriesTab';
 import FeaturesTab from './FeaturesTab';
+import InformationTab from './InformationTab';
 import Header from './layout/Header';
 import TabsNavigation from './layout/TabsNavigation';
 import AudioPlayer from './layout/AudioPlayer';
@@ -35,6 +36,7 @@ const CapitalOneDashboard: React.FC = () => {
         <main className="dashboard-content">
           {activeTab === 'timeSeries' && <TimeSeriesTab />}
           {activeTab === 'features' && <FeaturesTab />}
+          {activeTab === 'information' && <InformationTab />}
         </main>
       </div>
     </>

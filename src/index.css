@@ -5,10 +5,27 @@
   box-sizing: border-box;
 }
 
+:root {
+  --primary-color: #003057;
+  --accent-color: #d03027;
+  --text-primary: #333;
+  --text-secondary: #6e6e6e;
+  --bg-color: #f9fafb;
+  --card-bg: #ffffff;
+  --border-color: #e2e8f0;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.12);
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --transition-speed: 0.2s;
+}
+
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  background-color: #f5f5f5; /* Color de fondo similar al sitio de Capital One */
-  color: #333;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-primary);
   line-height: 1.5;
 }
 
@@ -18,18 +35,20 @@ body {
   max-width: 1400px;
   margin: 0 auto;
   padding: 20px;
-  padding-top: 40px; /* Mayor espaciado superior para compensar el header fijo */
+  padding-top: 50px; /* Mayor espaciado superior para compensar el header fijo */
 }
 
 /* Área fija que contiene el header y las pestañas - a todo ancho */
 .fixed-header-area {
   position: sticky;
   top: 0;
-  background-color: white;
   z-index: 100;
   width: 100%;
-  border-bottom: 1px solid #e2e8f0;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow-sm);
+  padding: 0;
+  margin: 0;
+  background-color: var(--card-bg);
+  background-image: linear-gradient(to right, rgba(0, 48, 87, 0.02), rgba(0, 48, 87, 0.00));
 }
 
 /* Contenedor para centrar el contenido del header */
@@ -37,7 +56,7 @@ body {
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 16px 20px 0;
+  padding: 20px 0 0;
 }
 
 /* Header del dashboard */
@@ -46,53 +65,118 @@ body {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
-  padding: 0 16px;
+  padding: 0 20px;
   position: relative;
+  width: 100%;
 }
 
 /* Logo de la compañía */
 .logo-container {
   flex: 0 0 auto;
+  position: relative;
+}
+
+.logo-container::after {
+  display: none; /* Ocultar la línea azul del logo */
 }
 
 .company-logo {
   height: 35px;
   width: auto;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.1));
+}
+
+.logo-accent {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-color);
+  right: -4px;
+  top: 0;
+  box-shadow: 0 0 4px rgba(208, 48, 39, 0.4);
+}
+
+/* Contenedor de título - nuevo */
+.title-container {
+  position: relative;
+  text-align: center;
 }
 
 /* Título centralizado */
 .dashboard-title {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 600;
-  color: #003057; /* Azul oscuro de Capital One */
+  color: var(--primary-color);
   text-align: center;
+  letter-spacing: -0.02em;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  position: relative;
+  display: inline-block;
+}
+
+.title-accent {
+  color: var(--accent-color);
+  font-weight: 700;
+  position: relative;
+}
+
+.title-accent::after {
+  display: none; /* Ocultar la línea roja del título */
+}
+
+.title-decoration {
+  display: none; /* Ocultar la barra decorativa debajo del título */
 }
 
 /* Badge de analytics */
 .analytics-badge {
   flex: 0 0 auto;
-  background-color: #d03027; /* Rojo de Capital One */
+  background: linear-gradient(135deg, var(--accent-color), #c62828);
   color: white;
-  padding: 6px 16px;
+  padding: 6px 16px 6px 14px;
   border-radius: 20px;
   font-size: 14px;
   font-weight: 500;
+  letter-spacing: 0.3px;
+  box-shadow: 0 2px 4px rgba(208, 48, 39, 0.2);
+  transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
-/* Navegación de pestañas */
+.badge-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.analytics-badge:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 6px rgba(208, 48, 39, 0.25);
+}
+
+/* Navegación de pestañas - actualizado */
 .tabs-container {
-  margin-bottom: 0;
-  padding: 0 16px;
+  margin: 0;
+  padding: 0;
+  background-color: var(--primary-color);
+  width: 100%;
+  box-sizing: border-box;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: block;
 }
 
 .tabs-nav {
   display: flex;
   list-style: none;
-  gap: 24px;
-  border-bottom: 1px solid #e2e8f0;
+  gap: 28px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+  border-bottom: none;
+  box-sizing: border-box;
 }
 
 .tab-item {
@@ -100,9 +184,11 @@ body {
 }
 
 .tab-link {
-  display: inline-block;
-  padding: 12px 0;
-  color: #6e6e6e;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 0;
+  color: rgba(255, 255, 255, 0.7);
   font-size: 15px;
   text-decoration: none;
   font-weight: 500;
@@ -110,58 +196,174 @@ body {
   background: none;
   cursor: pointer;
   position: relative;
-  transition: color 0.2s;
+  transition: color var(--transition-speed);
+}
+
+.tab-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.7;
+  transition: opacity var(--transition-speed), transform var(--transition-speed);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.tab-text {
+  position: relative;
 }
 
 .tab-link:hover {
-  color: #003057;
+  color: #ffffff;
+}
+
+.tab-link:hover .tab-icon {
+  opacity: 0.9;
+  transform: translateY(-1px);
+  color: #ffffff;
 }
 
 .tab-link.active {
-  color: #003057; /* Azul Capital One para tab activo */
+  color: #ffffff;
   font-weight: 600;
 }
 
+.tab-link.active .tab-icon {
+  opacity: 1;
+  color: #ffffff;
+}
+
 .tab-link.active::after {
+  display: none;
+}
+
+/* Mejora de la interacción al cambiar pestañas */
+@keyframes tabSlideIn {
+  from {
+    opacity: 0.7;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dashboard-content {
+  animation: tabSlideIn 0.3s ease-out;
+}
+
+/* Mejora para las tarjetas en vista general */
+.chart-section {
+  transition: transform 0.3s, box-shadow 0.3s;
+  will-change: transform, box-shadow;
+  position: relative;
+  overflow: hidden;
+}
+
+.chart-section::after {
   content: '';
   position: absolute;
-  bottom: -1px;
+  top: 0;
   left: 0;
   width: 100%;
-  height: 3px;
-  background-color: #003057; /* Azul Capital One para indicador */
+  height: 100%;
+  background: radial-gradient(circle at top right, rgba(255,255,255,0.8), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+
+.chart-section:hover::after {
+  opacity: 0.4;
+}
+
+/* Efectos mejorados para elementos interactivos */
+button, 
+select, 
+.select__control,
+.chart-filter .select__option {
+  transition: all 0.2s ease;
+}
+
+button:active, 
+select:active, 
+.select__control:active {
+  transform: scale(0.98);
+}
+
+/* Efectos sutiles para los gráficos */
+.recharts-layer {
+  transition: opacity 0.2s;
+}
+
+g.recharts-layer.recharts-line:hover,
+g.recharts-layer.recharts-bar:hover {
+  opacity: 0.95;
 }
 
 /* Contenido principal */
 .dashboard-content {
   display: grid;
-  gap: 20px;
-  padding-top: 20px; /* Espacio para compensar el header fijo */
+  gap: 24px;
+  padding-top: 24px;
 }
 
 /* Tarjetas de gráficas */
 .chart-section {
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  background-color: var(--card-bg);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
   overflow: hidden;
-  margin-bottom: 20px;
-  border: 1px solid #e2e8f0;
+  margin-bottom: 24px;
+  border: 1px solid var(--border-color);
+  transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+  position: relative;
+}
+
+.chart-section:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.chart-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary-color), rgba(0, 48, 87, 0.4));
 }
 
 .chart-header {
-  padding: 16px 20px;
-  border-bottom: 1px solid #e2e8f0;
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--border-color);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: rgba(249, 250, 251, 0.5);
+}
+
+.chart-title-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.chart-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-color);
+  opacity: 0.8;
 }
 
 .chart-title {
   font-size: 16px;
   font-weight: 600;
-  color: #003057; /* Azul Capital One para título de gráfica */
+  color: var(--primary-color);
   margin: 0;
+  letter-spacing: -0.01em;
 }
 
 .chart-filter {
@@ -170,8 +372,11 @@ body {
 }
 
 .chart-body {
-  padding: 0 12px 5px;
+  padding: 15px 15px 10px;
   height: 380px;
+  background-image: 
+    radial-gradient(circle at 100% 100%, rgba(0, 48, 87, 0.01) 0%, transparent 70%),
+    radial-gradient(circle at 0% 0%, rgba(0, 48, 87, 0.01) 0%, transparent 70%);
 }
 
 /* Estilos para la tarjeta de gráficos */
@@ -183,90 +388,127 @@ body {
   padding-bottom: 10px;
 }
 
-/* Estilos para Recharts */
+/* Estilos mejorados para Recharts */
 .recharts-wrapper {
   width: 100% !important;
   height: 100% !important;
 }
 
-.recharts-cartesian-grid-horizontal line,
-.recharts-cartesian-grid-vertical line {
-  stroke: #e5e7eb; /* Gris muy claro para la cuadrícula */
-  stroke-dasharray: 3 3;
-  stroke-opacity: 0.8;
+.recharts-surface {
+  overflow: visible;
 }
 
-.recharts-legend-wrapper {
-  display: flex !important;
-  align-items: center;
-  justify-content: center;
-  background-color: transparent !important;
-  bottom: 0 !important;
-  left: 0 !important;
-  width: 100% !important;
-  padding-top: 0 !important;
-  border-top: 1px solid #f0f0f0 !important;
-  margin-top: 0 !important;
+/* Mejora para líneas de gráficos */
+.recharts-line-curve {
+  stroke-width: 2.5 !important;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.1));
 }
 
+/* Mejora para puntos activos en gráficos de líneas */
+.recharts-active-dot {
+  box-shadow: 0 0 0 2px white, 0 0 0 4px rgba(0, 48, 87, 0.5);
+  stroke-width: 0;
+}
+
+/* Mejora para barras en gráficos de barras */
+.recharts-bar-rectangle {
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.08));
+  transition: filter 0.2s, opacity 0.2s;
+}
+
+.recharts-bar-rectangle:hover {
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.12));
+  opacity: 0.9;
+}
+
+/* Efecto de resaltado al pasar el mouse por áreas */
+.recharts-area-area {
+  opacity: 0.5;
+  transition: opacity 0.2s;
+}
+
+.recharts-area-area:hover {
+  opacity: 0.7;
+}
+
+/* Efectos para tooltip y elementos activos */
+.recharts-tooltip-wrapper {
+  z-index: 1000 !important;
+  filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.15));
+  transition: transform 0.2s;
+  transform-origin: center bottom;
+}
+
+.recharts-tooltip-wrapper:hover {
+  transform: translateY(-2px) scale(1.01);
+}
+
+/* Ajustes para la leyenda */
 .recharts-default-legend {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  justify-content: center !important;
   margin: 0 !important;
-  padding: 4px 0 !important;
+  padding: 10px 0 !important;
 }
 
 .recharts-legend-item {
-  margin-right: 12px !important;
-  align-items: center !important;
-  display: flex !important;
-  padding: 1px 4px !important;
+  cursor: pointer !important;
+  padding: 3px 8px !important;
+  border-radius: 4px !important;
+  transition: background-color 0.2s !important;
+}
+
+.recharts-legend-item:hover {
+  background-color: rgba(0, 0, 0, 0.04) !important;
 }
 
 .recharts-legend-item-text {
+  font-weight: 500 !important;
+  transition: color 0.2s !important;
+  padding-left: 4px !important;
+}
+
+/* Mejoras para los ejes */
+.recharts-cartesian-axis-line {
+  stroke: rgba(0, 0, 0, 0.1) !important;
+  stroke-width: 1 !important;
+}
+
+.recharts-cartesian-axis-tick-line {
+  stroke: rgba(0, 0, 0, 0.1) !important;
+}
+
+.recharts-text.recharts-cartesian-axis-tick-value {
   font-size: 11px !important;
-  color: #4b5563 !important;
-  margin-left: 4px !important;
+  fill: var(--text-secondary) !important;
   font-weight: 500 !important;
 }
 
-.recharts-legend-item:last-child {
-  margin-right: 0 !important;
+/* Efecto de enfoque para filtros */
+.chart-filter {
+  position: relative;
 }
 
-.recharts-cartesian-axis-tick-value {
-  font-size: 12px;
-  fill: #6b7280; /* Gris para el texto de los ejes */
+.chart-filter select,
+.chart-filter .select__control {
+  border: 1px solid rgba(0, 48, 87, 0.15) !important;
+  border-radius: 6px !important;
+  padding: 2px 6px !important;
+  font-size: 13px !important;
+  background-color: rgba(255, 255, 255, 0.8) !important;
+  transition: all 0.2s !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
 }
 
-/* Estilos adicionales para los ejes de las gráficas */
-.recharts-cartesian-axis-line {
-  stroke: #cbd5e1;
-  stroke-width: 1;
+.chart-filter select:hover,
+.chart-filter .select__control:hover {
+  border-color: rgba(0, 48, 87, 0.3) !important;
+  background-color: rgba(255, 255, 255, 0.95) !important;
 }
 
-.recharts-xAxis .recharts-cartesian-axis-tick-value {
-  font-weight: 500;
-}
-
-.recharts-yAxis .recharts-cartesian-axis-tick-value {
-  font-weight: 500;
-}
-
-.recharts-tooltip-wrapper {
-  opacity: 1 !important;
-  visibility: visible !important;
-  z-index: 9999 !important;
-  pointer-events: none !important;
-  transform: none !important;
-}
-
-.recharts-default-tooltip {
-  background-color: white !important;
-  border: 1px solid #e2e8f0 !important;
-  border-radius: 4px !important;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) !important;
+.chart-filter select:focus,
+.chart-filter .select__control--is-focused {
+  border-color: var(--primary-color) !important;
+  box-shadow: 0 0 0 2px rgba(0, 48, 87, 0.1) !important;
+  outline: none !important;
 }
 
 /* Colores específicos para las líneas */
@@ -814,4 +1056,143 @@ body {
 .custom-tooltip-total-text {
   font-weight: 600;
   color: #0066eb;
+}
+
+/* Mejoras gráficas generales */
+.recharts-responsive-container {
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.05));
+}
+
+.recharts-layer.recharts-line {
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+}
+
+.recharts-cartesian-axis-tick-value {
+  font-weight: 500 !important;
+  font-size: 11px !important;
+}
+
+.recharts-cartesian-grid-horizontal line,
+.recharts-cartesian-grid-vertical line {
+  stroke: rgba(0, 48, 87, 0.06) !important;
+  stroke-dasharray: 3 3;
+  stroke-opacity: 0.6;
+}
+
+/* Efecto de animación sutil para los gráficos */
+@keyframes fadeIn {
+  from { opacity: 0.4; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.chart-body > div {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Reproductor de audio */
+.audio-player-container {
+  width: 100%;
+  padding: 8px 0;
+  background-color: #002b4c;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.audio-player {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Alineado a la izquierda */
+  gap: 16px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.audio-title {
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: 0.2px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  margin-right: 8px;
+}
+
+.play-button {
+  background: #d03027;
+  color: white;
+  border: none;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.play-button:hover {
+  background: #e0382f;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+}
+
+.play-button:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.time-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-grow: 1;
+  max-width: 600px;
+}
+
+.time-slider {
+  flex-grow: 1;
+  height: 4px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+}
+
+.time-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  background: white;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.time-slider::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  background: white;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+  transition: background 0.2s;
+}
+
+.time-slider::-webkit-slider-thumb:hover,
+.time-slider::-moz-range-thumb:hover {
+  background: #f0f0f0;
+}
+
+.current-time, .duration {
+  font-size: 14px;
+  color: white;
+  font-weight: 500;
+  min-width: 40px;
+  text-align: center;
+  opacity: 0.9;
 }

@@ -3,22 +3,31 @@ import TimeSeriesTab from './TimeSeriesTab';
 import FeaturesTab from './FeaturesTab';
 import Header from './layout/Header';
 import TabsNavigation from './layout/TabsNavigation';
+import AudioPlayer from './layout/AudioPlayer';
 
 // Componente principal del Dashboard
 const CapitalOneDashboard: React.FC = () => {
   const [activeTab, setActiveTab] = useState('timeSeries');
 
+  // Ruta al archivo de audio
+  const audioSrc = '/audio/capital_one.mp3';
+
   return (
     <>
-      {/* Área fija para header y navegación - full width */}
+      {/* Área fija para header - full width */}
       <div className="fixed-header-area">
         <div className="header-content">
           {/* Header */}
           <Header />
-          
-          {/* Tabs de navegación */}
-          <TabsNavigation activeTab={activeTab} setActiveTab={setActiveTab} />
         </div>
+        
+        {/* Reproductor de audio */}
+        <div className="audio-player-container">
+          <AudioPlayer audioSrc={audioSrc} />
+        </div>
+        
+        {/* Tabs de navegación - directamente en el área fija para ocupar todo el ancho */}
+        <TabsNavigation activeTab={activeTab} setActiveTab={setActiveTab} />
       </div>
       
       {/* Contenido principal con ancho máximo */}

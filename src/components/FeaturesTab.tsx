@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { 
-  BarChart, Bar, PieChart, Pie, XAxis, YAxis,
+  BarChart, Bar, XAxis, YAxis,
   Tooltip, ResponsiveContainer, Cell
 } from 'recharts';
 import { 
@@ -121,95 +121,11 @@ const CustomBarTooltip = ({ active, payload, coordinate }: CustomTooltipProps) =
   return null;
 };
 
-// Enhanced tooltip component for the pie chart
-const CustomPieTooltip = ({ active, payload, coordinate }: CustomTooltipProps) => {
-  if (active && payload && payload.length) {
-    const data = payload[0];
-    const category = data.name;
-    const value = data.value;
-    const total = data.payload.maxValue || 0;
-    const percentage = total ? ((value / total) * 100).toFixed(1) : '0';
-    const color = AUDIENCE_COLORS[category] || data.color || '#666';
-    
-    return (
-      <div className="custom-tooltip" style={{
-        backgroundColor: 'rgba(255, 255, 255, 0.98)',
-        padding: '12px 16px',
-        border: '1px solid #ddd',
-        borderRadius: '6px',
-        boxShadow: '0 6px 16px rgba(0, 0, 0, 0.15)',
-        position: 'absolute',
-        left: coordinate ? `${coordinate.x + 15}px` : 'auto',
-        top: coordinate ? `${coordinate.y - 70}px` : 'auto',
-        transform: 'translateY(-50%)',
-        pointerEvents: 'none',
-        zIndex: 1000,
-        minWidth: '220px',
-        transition: 'opacity 0.15s ease-in-out'
-      }}>
-        <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          marginBottom: '8px'
-        }}>
-          <div style={{
-            width: '10px',
-            height: '10px',
-            borderRadius: '50%',
-            backgroundColor: color,
-            marginRight: '8px'
-          }}></div>
-          <p style={{ 
-            margin: 0, 
-            fontWeight: 'bold',
-            fontSize: '14px',
-            color: '#333'
-          }}>{category}</p>
-        </div>
-        
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '6px'
-        }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-            <span style={{ fontSize: '13px', color: '#666' }}>Spend:</span>
-            <span style={{ fontSize: '13px', fontWeight: 'bold', color: '#333' }}>{formatCurrency(value)}</span>
-          </div>
-          
-          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-            <span style={{ fontSize: '13px', color: '#666' }}>% of Total:</span>
-            <span style={{ fontSize: '13px', fontWeight: 'bold', color: '#333' }}>{percentage}%</span>
-          </div>
-        </div>
-        
-        <div style={{ 
-          marginTop: '10px', 
-          height: '4px', 
-          width: '100%', 
-          backgroundColor: '#f0f0f0', 
-          borderRadius: '2px' 
-        }}>
-          <div style={{ 
-            height: '100%', 
-            width: `${percentage}%`, 
-            backgroundColor: color, 
-            borderRadius: '2px',
-            transition: 'width 0.3s ease-in-out'
-          }}></div>
-        </div>
-      </div>
-    );
-  }
-  return null;
-};
-
 // Component for Features Tab
 const FeaturesTab: React.FC = () => {
   const [audienceCategoryData, setAudienceCategoryData] = useState<AudienceCategoryItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [totalSpend, setTotalSpend] = useState(0);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   // Track mouse position for better tooltip positioning
@@ -245,7 +161,6 @@ const FeaturesTab: React.FC = () => {
             maxValue: total
           }));
         
-        setTotalSpend(total);
         setAudienceCategoryData(sortedData);
         setError(null);
       } catch (err) {
@@ -301,7 +216,7 @@ const FeaturesTab: React.FC = () => {
       <AudienceCategoryTrendChart />
       
       <div className="flex flex-wrap md:flex-nowrap gap-4 mt-4">
-        <div className="w-full md:w-1/2">
+        <div className="w-full">
           <ChartCard title="Category Distribution">
         <ResponsiveContainer width="100%" height={400}>
           <BarChart
@@ -353,53 +268,6 @@ const FeaturesTab: React.FC = () => {
         </ResponsiveContainer>
           </ChartCard>
       </div>
-      
-        <div className="w-full md:w-1/2">
-          <ChartCard title="Total Spend Proportion">
-            <ResponsiveContainer width="100%" height={400}>
-              <PieChart 
-                margin={{ top: 10, right: 10, left: 10, bottom: 10 }}
-                onMouseMove={(e) => e && e.activeCoordinate && setMousePosition({ 
-                  x: e.activeCoordinate.x, 
-                  y: e.activeCoordinate.y 
-                })}
-              >
-            <Pie
-              data={audienceCategoryData}
-              dataKey="spend"
-              nameKey="category"
-              cx="50%"
-              cy="50%"
-                  innerRadius={80}
-                  outerRadius={140}
-                  paddingAngle={2}
-              labelLine={false}
-                  label={false}
-            >
-              {audienceCategoryData.map((entry, index) => (
-                <Cell 
-                  key={`cell-${index}`} 
-                  fill={AUDIENCE_COLORS[entry.category] || COLORS[index % COLORS.length]} 
-                      stroke="none"
-                />
-              ))}
-            </Pie>
-                <Tooltip 
-                  content={<CustomPieTooltip />}
-                  position={mousePosition}
-                  isAnimationActive={false}
-                  allowEscapeViewBox={{ x: true, y: true }}
-                />
-                <text x="50%" y="50%" textAnchor="middle" dominantBaseline="middle">
-                  <tspan x="50%" dy="-15" fontSize="14" fill="#666" fontWeight="500">Total</tspan>
-                  <tspan x="50%" dy="30" fontSize="22" fill="#333" fontWeight="600">
-                    {formatCurrency(totalSpend)}
-                  </tspan>
-                </text>
-              </PieChart>
-        </ResponsiveContainer>
-          </ChartCard>
-        </div>
       </div>
     </div>
   );

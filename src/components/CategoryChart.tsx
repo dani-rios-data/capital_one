@@ -313,7 +313,7 @@ const CategoryChart: React.FC = () => {
   // Verificar si hay datos para mostrar
   if (categoryData.length === 0 || selectedCategories.length === 0) {
     return (
-      <ChartCard title="Ad Spend by Category" filter={categoryFilter}>
+      <ChartCard title="Product Category" filter={categoryFilter}>
         <div className="flex items-center justify-center h-full">
           <p className="text-gray-500">No hay datos para mostrar. Por favor seleccione al menos una categoría.</p>
         </div>
@@ -323,7 +323,7 @@ const CategoryChart: React.FC = () => {
 
   return (
     <ChartCard 
-      title="Ad Spend by Category"
+      title="Product Category"
       filter={categoryFilter}
     >
       <div>
@@ -385,7 +385,7 @@ const CategoryChart: React.FC = () => {
                   stroke={COLORS[index % COLORS.length]} 
                   strokeWidth={2.5}
                   dot={false}
-                  activeDot={{ r: 4, strokeWidth: 1 }}
+                  activeDot={{ r: 6, strokeWidth: 0 }}
                   isAnimationActive={false}
                 />
               ))}

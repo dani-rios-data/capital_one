@@ -58,7 +58,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ audioSrc }) => {
         onEnded={() => setIsPlaying(false)}
       />
       
-      <div className="audio-title">Audio Insights</div>
+      <div className="audio-title">Executive Audio Summary</div>
       
       <button className="play-button" onClick={togglePlay}>
         {isPlaying ? (

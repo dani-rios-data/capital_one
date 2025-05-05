@@ -218,7 +218,7 @@ const FeaturesTab: React.FC<{ setActiveTab?: (tab: string) => void }> = ({ setAc
 
   return (
     <div className="tab-content">
-      <h2 className="section-title">Audience Analysis</h2>
+      <h2 className="section-title">Audience Intelligence</h2>
       <p className="info-reference">
         For more information about how Audience Category was created, please visit the{' '}
         <span 
@@ -234,7 +234,7 @@ const FeaturesTab: React.FC<{ setActiveTab?: (tab: string) => void }> = ({ setAc
       
       <div className="flex flex-wrap md:flex-nowrap gap-4 mt-4">
         <div className="w-full">
-          <ChartCard title="Category Distribution">
+          <ChartCard title="Audience Investment Overview">
             <div>
               <ResponsiveContainer width="100%" height={400}>
                 <BarChart
@@ -288,13 +288,13 @@ const FeaturesTab: React.FC<{ setActiveTab?: (tab: string) => void }> = ({ setAc
               <div className="insights-container">
                 <h3 className="insights-title">Key Insights</h3>
                 <div className="insights-content">
-                  <p><strong>Financial goals audience dominance:</strong> The "Consumer · Financial Goals" audience segment accounts for 34% of total ad spend across all periods, with a substantially higher allocation ($3.6M monthly average) than any other category, indicating a strong strategic focus on financially-motivated consumers.</p>
+                  <p><strong>Financial goals strategic priority:</strong> "Consumer · Financial Goals" represents the highest investment category at 33% of total annual budget ($40.8M), maintaining consistent spending levels throughout the year and establishing this audience as Capital One's core strategic focus.</p>
                   
-                  <p><strong>Budget category proportions:</strong> Three audience categories ("Consumer · Financial Goals", "Consumer · Shopping & Products", and "Business · Owner & Growth") consistently receive 78% of the total budget allocation, while "Workforce & Employment" receives less than 1% of total spend across all observed months.</p>
+                  <p><strong>Lifestyle category dramatic growth:</strong> "Consumer · Lifestyle & Interests" showed the most significant shift in prioritization, increasing from 4% of budget share in January to 32% by December, representing the most substantial strategic reallocation in the portfolio.</p>
                   
-                  <p><strong>Proportional reallocation trend:</strong> A clear shift in spending distribution occurred from January to August, with "Consumer · Banking Preferences" declining from 16.5% to 13.5% of total spend while "Consumer · Lifestyle & Interests" increased from 3.9% to 14.3% of the overall budget allocation.</p>
+                  <p><strong>Executive spending hierarchy:</strong> A clear spending hierarchy emerges across segments with "Consumer · Financial Goals" (33%), "Consumer · Shopping & Products" (23%), and "Consumer · Banking Preferences" (19%) forming the top tier, while "Workforce & Employment" consistently receives minimal allocation (0.3%).</p>
                   
-                  <p><strong>Category balance evolution:</strong> The relative spend distribution became more evenly balanced over time, with the standard deviation between category percentages decreasing from 12.7% in January to 8.9% in August, indicating a diversification strategy across audience segments.</p>
+                  <p><strong>Year-end distribution shift:</strong> December shows a dramatic transformation in allocation distribution, with "Consumer · Lifestyle & Interests" receiving the highest monthly share (32%) for the first time, while historically dominant segments experienced proportional decreases, signaling a potential long-term strategic pivot.</p>
                 </div>
               </div>
             </div>

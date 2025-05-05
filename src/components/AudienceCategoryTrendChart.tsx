@@ -314,7 +314,7 @@ const AudienceCategoryTrendChart: React.FC = () => {
   // Verificar si hay datos para mostrar
   if (audienceData.length === 0 || selectedCategories.length === 0) {
     return (
-      <ChartCard title="Ad Spend Trends by Audience Category" filter={audienceCategoryFilter}>
+      <ChartCard title="Audience Investment Timeline" filter={audienceCategoryFilter}>
         <div className="flex items-center justify-center h-full">
           <p className="text-gray-500">No hay datos para mostrar. Por favor seleccione al menos una categoría.</p>
         </div>
@@ -324,7 +324,7 @@ const AudienceCategoryTrendChart: React.FC = () => {
 
   return (
     <ChartCard 
-      title="Ad Spend Trends by Audience Category"
+      title="Audience Investment Timeline"
       filter={audienceCategoryFilter}
     >
       <div>
@@ -386,7 +386,7 @@ const AudienceCategoryTrendChart: React.FC = () => {
                   stroke={AUDIENCE_COLORS[category.value] || COLORS[index % COLORS.length]} 
                   strokeWidth={2.5}
                   dot={false}
-                  activeDot={{ r: 4, strokeWidth: 1 }}
+                  activeDot={{ r: 6, strokeWidth: 0 }}
                   isAnimationActive={false}
                 />
               ))}
@@ -397,13 +397,13 @@ const AudienceCategoryTrendChart: React.FC = () => {
         <div className="insights-container">
           <h3 className="insights-title">Key Insights</h3>
           <div className="insights-content">
-            <p><strong>Consumer Financial Goals priority:</strong> "Consumer · Financial Goals" consistently receives the highest investment across all months, ranging from $2.8M in January to $4.4M in April 2024, accounting for approximately 30-40% of total monthly spend.</p>
+            <p><strong>Consumer Financial Goals dominance:</strong> "Consumer · Financial Goals" maintains consistent leadership across all periods with an average monthly spend of $3.4M, peaking at $4.4M in April 2024, representing approximately 34% of total advertising investment.</p>
             
-            <p><strong>Lifestyle interests growth:</strong> "Consumer · Lifestyle & Interests" exhibited the most dramatic percentage increase, rising over 600% from $306K in January to $2.2M by July 2024, indicating a major strategic shift toward lifestyle-focused targeting.</p>
+            <p><strong>Lifestyle category explosive growth:</strong> "Consumer · Lifestyle & Interests" demonstrates extraordinary growth of 1,870% from January ($306K) to December ($6M), becoming the highest-funded category by year-end and suggesting a strategic pivot toward lifestyle-focused marketing.</p>
             
-            <p><strong>Shopping category acceleration:</strong> Investment in "Consumer · Shopping & Products" grew 67% from January ($1.2M) to March ($3.4M), followed by fluctuations but maintaining higher levels than Q1, suggesting ongoing prioritization of product-focused consumers.</p>
+            <p><strong>Seasonal shopping focus:</strong> "Consumer · Shopping & Products" shows clear seasonal patterns with significant peaks in March ($3.4M) and November ($4.9M), coinciding with spring shopping and holiday seasons, revealing a cyclical approach to consumer retail targeting.</p>
             
-            <p><strong>Business segment volatility:</strong> "Business · Owner & Growth" experienced significant fluctuation, declining 67% from January ($2.1M) to May ($699K), before recovering in subsequent months, demonstrating a dynamic approach to business audience targeting.</p>
+            <p><strong>Business segment rebound:</strong> "Business · Owner & Growth" experienced a 224% recovery from its May low ($699K) to December high ($2.2M), indicating renewed focus on business-oriented customers after mid-year strategic reassessment.</p>
           </div>
         </div>
       </div>

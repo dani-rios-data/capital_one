@@ -10,7 +10,7 @@ const Header: React.FC = () => {
       
       <div className="title-container">
         <h1 className="dashboard-title">
-          <span className="title-accent">Ad Spend</span> Analysis Dashboard
+          <span className="title-accent">Capital One</span> Advertising Strategy Analysis
         </h1>
         <div className="title-decoration"></div>
       </div>

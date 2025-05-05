@@ -313,7 +313,7 @@ const PublisherChart: React.FC = () => {
   // Verificar si hay datos para mostrar
   if (publisherData.length === 0 || selectedPublishers.length === 0) {
     return (
-      <ChartCard title="Ad Spend by Publisher" filter={publisherFilter}>
+      <ChartCard title="Publisher Portfolio" filter={publisherFilter}>
         <div className="flex items-center justify-center h-full">
           <p className="text-gray-500">No hay datos para mostrar. Por favor seleccione al menos un publisher.</p>
         </div>
@@ -323,7 +323,7 @@ const PublisherChart: React.FC = () => {
 
   return (
     <ChartCard 
-      title="Ad Spend by Publisher"
+      title="Publisher Portfolio"
       filter={publisherFilter}
     >
       <div>
@@ -368,7 +368,7 @@ const PublisherChart: React.FC = () => {
                   dataKey={publisher.value}
                   stroke={COLORS[index % COLORS.length]}
                   activeDot={{ r: 6, strokeWidth: 0 }}
-                  dot={{ r: 3, strokeWidth: 0 }}
+                  dot={false}
                   strokeWidth={2}
                   name={publisher.label}
                 />

@@ -330,7 +330,7 @@ const BrandLeafChart: React.FC = () => {
   // Verificar si hay datos para mostrar
   if (brandData.length === 0 || selectedBrands.length === 0) {
     return (
-      <ChartCard title="Ad Spend by Brand Leaf" filter={brandFilter}>
+      <ChartCard title="Brand Investment" filter={brandFilter}>
         <div className="flex items-center justify-center h-full">
           <p className="text-gray-500">No hay datos para mostrar. Por favor seleccione al menos una marca.</p>
         </div>
@@ -340,7 +340,7 @@ const BrandLeafChart: React.FC = () => {
 
   return (
     <ChartCard 
-      title="Ad Spend by Brand Leaf"
+      title="Brand Investment"
       filter={brandFilter}
     >
       <div>
@@ -402,7 +402,7 @@ const BrandLeafChart: React.FC = () => {
                   stroke={COLORS[index % COLORS.length]} 
                   strokeWidth={2.5}
                   dot={false}
-                  activeDot={{ r: 4, strokeWidth: 1 }}
+                  activeDot={{ r: 6, strokeWidth: 0 }}
                   isAnimationActive={false}
                 />
               ))}

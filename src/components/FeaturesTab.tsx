@@ -218,7 +218,7 @@ const FeaturesTab: React.FC<{ setActiveTab?: (tab: string) => void }> = ({ setAc
 
   return (
     <div className="tab-content">
-      <h2 className="section-title">Audience Intelligence</h2>
+      <h2 className="tabs-section-title">Audience Intelligence</h2>
       <p className="info-reference">
         For more information about how Audience Category was created, please visit the{' '}
         <span 

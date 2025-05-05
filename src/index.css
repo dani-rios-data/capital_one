@@ -48,7 +48,7 @@ body {
   padding: 0;
   margin: 0;
   background-color: var(--card-bg);
-  background-image: linear-gradient(to right, rgba(0, 48, 87, 0.02), rgba(0, 48, 87, 0.00));
+  /* background-image: linear-gradient(to right, rgba(0, 48, 87, 0.02), rgba(0, 48, 87, 0.00)); */
 }
 
 /* Contenedor para centrar el contenido del header */
@@ -68,6 +68,7 @@ body {
   padding: 0 20px;
   position: relative;
   width: 100%;
+  background-color: #fff;
 }
 
 /* Logo de la compañía */
@@ -159,86 +160,98 @@ body {
 
 /* Navegación de pestañas - actualizado */
 .tabs-container {
-  margin: 0;
+  background: #003057;
+  /* border-top: 4px solid #d03027; */
+  border-bottom: none;
+  border-left: 1px solid #003057;
+  border-right: 1px solid #003057;
+  border-radius: 0 0 8px 8px;
   padding: 0;
-  background-color: #002b4c;
-  width: 100%;
-  box-sizing: border-box;
-  display: block;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  position: relative;
+  z-index: 10;
 }
 
 .tabs-wrapper {
-  max-width: 1400px;
+  max-width: 1280px;
   margin: 0 auto;
   padding: 0 20px;
+  display: flex;
+  flex-direction: column;
 }
 
 .tabs-nav {
   display: flex;
   list-style: none;
-  gap: 8px;
-  margin: 0 auto;
   padding: 0;
+  margin: 0;
   border-bottom: none;
-  box-sizing: border-box;
+  gap: 8px;
 }
 
 .tab-item {
-  margin: 0;
+  margin-right: 8px;
 }
 
 .tab-link {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 12px 16px;
-  color: white;
-  font-size: 15px;
-  text-decoration: none;
-  font-weight: 500;
+  padding: 12px 24px;
+  border-radius: 12px 12px 0 0;
   border: none;
-  background: none;
+  background: transparent;
+  color: rgba(255,255,255,0.7);
+  font-weight: 500;
+  font-size: 15px;
   cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4,0,0.2,1);
   position: relative;
+  overflow: hidden;
+  box-shadow: none;
+  margin-bottom: 0;
+}
+
+.tab-link:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  background-color: transparent;
   transition: all 0.2s ease;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
+}
+
+.tab-link:hover {
+  color: #fff;
+  background-color: rgba(255,255,255,0.06);
+}
+
+.tab-link.active {
+  color: #003057;
+  background-color: #fff;
+  font-weight: 700;
+  font-size: 17px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+  border-top: 5px solid #d03027;
+  border-radius: 16px 16px 0 0;
+  z-index: 2;
+  margin-bottom: -4px;
+}
+
+.tab-link.active:before {
+  background-color: #d03027;
+  height: 0;
 }
 
 .tab-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.2s ease;
-  width: 20px;
-  height: 20px;
+  margin-right: 8px;
+  color: #d03027 !important;
 }
 
 .tab-text {
   position: relative;
-}
-
-.tab-link:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  color: white;
-}
-
-.tab-link:hover .tab-icon {
-  transform: translateY(-1px);
-}
-
-.tab-link.active {
-  background-color: white;
-  color: #002b4c;
-  font-weight: 600;
-}
-
-.tab-link.active .tab-icon {
-  color: #002b4c;
-}
-
-.tab-link.active::after {
-  display: none;
+  font-size: 13px;
 }
 
 /* Mejora de la interacción al cambiar pestañas */
@@ -753,9 +766,12 @@ g.recharts-layer.recharts-bar:hover {
   color: #ef4444 !important;
 }
 
-/* Clase para el contenido de las pestañas */
+/* Clase para el contenido de las pestañas - reducir espacio superior */
 .tab-content {
-  padding: 16px;
+  background: #f9fafc;
+  padding: 15px 24px 30px; /* Reducido padding superior de 30px a 15px */
+  min-height: calc(100vh - 180px);
+  box-shadow: inset 0 4px 12px rgba(0, 0, 0, 0.03);
 }
 
 /* Responsive */
@@ -1117,147 +1133,6 @@ g.recharts-layer.recharts-bar:hover {
   animation: fadeIn 0.5s ease-out forwards;
 }
 
-/* Título de las tabs */
-.tabs-title {
-  font-size: 20px;
-  font-weight: 700;
-  color: #002b4c;
-  margin-bottom: 8px;
-  margin-left: 4px;
-  letter-spacing: -0.5px;
-}
-
-/* Reproductor de audio rediseñado */
-.audio-player-container {
-  width: 100%;
-  padding: 8px 0;
-  background-color: #fff;
-  border-top: 1px solid #e5e7eb;
-  border-bottom: 1px solid #e5e7eb;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-}
-
-.audio-player {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 16px;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-.audio-title {
-  color: #002b4c;
-  font-weight: 600;
-  font-size: 18px;
-  letter-spacing: 0.2px;
-  margin-right: 8px;
-}
-
-.play-button {
-  background: #d03027;
-  color: white;
-  border: none;
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.2s;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
-  font-size: 22px;
-}
-
-.play-button:hover {
-  background: #e0382f;
-  transform: translateY(-1px);
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.18);
-}
-
-.play-button:active {
-  transform: translateY(0);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
-}
-
-.time-controls {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-grow: 1;
-  max-width: 600px;
-}
-
-.time-slider {
-  flex-grow: 1;
-  height: 5px;
-  -webkit-appearance: none;
-  appearance: none;
-  background: #e5e7eb;
-  border-radius: 2.5px;
-  outline: none;
-  cursor: pointer;
-  box-shadow: 0 1px 2px rgba(0,43,76,0.08);
-}
-
-.time-slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 16px;
-  height: 16px;
-  background: #002b4c;
-  border-radius: 50%;
-  cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0,43,76,0.12);
-  border: 2px solid #fff;
-  transition: background 0.2s;
-}
-
-.time-slider::-moz-range-thumb {
-  width: 16px;
-  height: 16px;
-  background: #002b4c;
-  border-radius: 50%;
-  cursor: pointer;
-  border: 2px solid #fff;
-  box-shadow: 0 2px 6px rgba(0,43,76,0.12);
-  transition: background 0.2s;
-}
-
-.time-slider::-webkit-slider-thumb:hover,
-.time-slider::-moz-range-thumb:hover {
-  background: #003e6b;
-}
-
-.time-slider::-ms-fill-lower {
-  background: #002b4c;
-}
-
-.time-slider::-ms-fill-upper {
-  background: #e5e7eb;
-}
-
-.time-slider:focus {
-  outline: none;
-}
-
-.time-slider::-webkit-slider-runnable-track {
-  height: 5px;
-  background: linear-gradient(to right, #002b4c 0%, #002b4c calc(var(--progress, 0) * 100%), #e5e7eb calc(var(--progress, 0) * 100%), #e5e7eb 100%);
-  border-radius: 2.5px;
-}
-
-.current-time, .duration {
-  font-size: 16px;
-  color: #002b4c;
-  font-weight: 500;
-  min-width: 44px;
-  text-align: center;
-  opacity: 0.95;
-}
-
 /* Estilos para la sección de insights */
 .insights-container {
   margin-top: 20px;
@@ -1296,26 +1171,32 @@ g.recharts-layer.recharts-bar:hover {
   font-weight: 600;
 }
 
-/* Estilos para los títulos de sección */
-.section-title {
-  font-size: 24px;
-  font-weight: 600;
-  color: var(--primary-color);
-  margin: 0 0 10px 0;
-  padding-bottom: 12px;
+/* Estilos para los títulos de sección después de las tabs - tamaño reducido */
+.tabs-section-title {
+  font-size: 22px; /* Reducido de 28px a 22px */
+  font-weight: 700;
+  color: #002b4c;
+  margin: 0 0 20px 0; /* Reducido margen inferior de 24px a 20px */
+  padding-bottom: 12px; /* Reducido padding inferior de 16px a 12px */
   position: relative;
-  border-bottom: 1px solid var(--border-color);
+  padding-left: 14px; /* Reducido padding izquierdo de 18px a 14px */
+  letter-spacing: -0.5px;
+  border-bottom: none;
 }
 
-.section-title::after {
+.tabs-section-title:before {
   content: '';
   position: absolute;
-  bottom: -1px;
   left: 0;
-  width: 60px;
-  height: 3px;
-  background-color: var(--primary-color);
+  top: 8px; /* Ajustado de 12px a 8px para centrarlo con el nuevo tamaño */
+  width: 4px; /* Reducido de 6px a 4px */
+  height: 22px; /* Reducido de 28px a 22px */
+  background-color: #d03027;
   border-radius: 3px;
+}
+
+.tabs-section-title::after {
+  display: none;
 }
 
 /* Estilos para el texto informativo */
@@ -1334,4 +1215,132 @@ g.recharts-layer.recharts-bar:hover {
 
 .info-link:hover {
   text-decoration: underline;
+}
+
+/* Mejoras para el Executive Audio Summary - Rediseño elegante */
+.audio-player {
+  background: #fff;
+  border-radius: 8px;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  margin: 0;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.audio-player::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 25%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.03));
+  pointer-events: none;
+}
+
+.audio-player:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.audio-title {
+  font-weight: 600;
+  font-size: 16px;
+  color: #003057;
+  margin-right: 20px;
+  position: relative;
+  padding-left: 10px;
+  font-family: inherit;
+}
+
+.audio-title:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 14px;
+  background-color: #d03027;
+  border-radius: 1.5px;
+}
+
+.play-button {
+  background-color: rgba(208, 48, 39, 0.9);
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(208, 48, 39, 0.2);
+  margin-right: 16px;
+}
+
+.play-button svg {
+  width: 18px;
+  height: 18px;
+}
+
+.play-button:hover {
+  background-color: #d03027;
+  transform: scale(1.05);
+}
+
+.time-controls {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.time-slider {
+  flex-grow: 1;
+  height: 4px;
+  -webkit-appearance: none;
+  background: #003057;
+  border-radius: 2px;
+  margin: 0 12px;
+  position: relative;
+  cursor: pointer;
+}
+
+.time-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: white;
+  cursor: pointer;
+  border: 2px solid #d03027;
+  box-shadow: 0 0 0 2px rgba(208, 48, 39, 0.1);
+  transition: all 0.2s ease;
+}
+
+.time-slider::-webkit-slider-thumb:hover {
+  background: #d03027;
+}
+
+.current-time, .duration {
+  font-family: inherit;
+  font-size: 12px;
+  color: #003057;
+  width: 36px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.audio-player-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
 }

@@ -50,40 +50,42 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ audioSrc }) => {
 
   return (
     <div className="audio-player">
-      <audio 
-        ref={audioRef}
-        src={audioSrc}
-        onTimeUpdate={handleTimeUpdate}
-        onLoadedMetadata={handleLoadedMetadata}
-        onEnded={() => setIsPlaying(false)}
-      />
-      
-      <div className="audio-title">Executive Audio Summary</div>
-      
-      <button className="play-button" onClick={togglePlay}>
-        {isPlaying ? (
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <rect x="6" y="4" width="4" height="16"></rect>
-            <rect x="14" y="4" width="4" height="16"></rect>
-          </svg>
-        ) : (
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <polygon points="5 3 19 12 5 21 5 3"></polygon>
-          </svg>
-        )}
-      </button>
-      
-      <div className="time-controls">
-        <span className="current-time">{formatTime(currentTime)}</span>
-        <input 
-          type="range" 
-          min="0" 
-          max={duration || 0}
-          value={currentTime}
-          onChange={handleSeek}
-          className="time-slider"
+      <div className="audio-player-inner" style={{ justifyContent: 'flex-start', marginLeft: 20 }}>
+        <audio 
+          ref={audioRef}
+          src={audioSrc}
+          onTimeUpdate={handleTimeUpdate}
+          onLoadedMetadata={handleLoadedMetadata}
+          onEnded={() => setIsPlaying(false)}
         />
-        <span className="duration">{formatTime(duration)}</span>
+        
+        <div className="audio-title" style={{ marginLeft: 0 }}>Executive Audio Summary</div>
+        
+        <button className="play-button" onClick={togglePlay}>
+          {isPlaying ? (
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <rect x="6" y="4" width="4" height="16"></rect>
+              <rect x="14" y="4" width="4" height="16"></rect>
+            </svg>
+          ) : (
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+          )}
+        </button>
+        
+        <div className="time-controls">
+          <span className="current-time">{formatTime(currentTime)}</span>
+          <input 
+            type="range" 
+            min="0" 
+            max={duration || 0}
+            value={currentTime}
+            onChange={handleSeek}
+            className="time-slider"
+          />
+          <span className="duration">{formatTime(duration)}</span>
+        </div>
       </div>
     </div>
   );

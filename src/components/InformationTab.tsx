@@ -93,6 +93,7 @@ const InformationTab: React.FC = () => {
 
   return (
     <div style={styles.tabContent}>
+      <h2 className="tabs-section-title">Audience Segmentation</h2>
       <div style={styles.container}>
         <h1 style={styles.mainTitle}>Capital One Audience Segmentation Analysis</h1>
         

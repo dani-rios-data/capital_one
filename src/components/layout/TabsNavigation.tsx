@@ -5,17 +5,10 @@ interface TabsNavigationProps {
   setActiveTab: (tab: string) => void;
 }
 
-const tabTitles: Record<string, string> = {
-  timeSeries: 'Campaign Investment Analysis',
-  features: 'Audience Intelligence',
-  information: 'Audience Segmentation',
-};
-
 const TabsNavigation: React.FC<TabsNavigationProps> = ({ activeTab, setActiveTab }) => {
   return (
     <div className="tabs-container">
       <div className="tabs-wrapper">
-        <div className="tabs-title">{tabTitles[activeTab]}</div>
         <ul className="tabs-nav">
           <li className="tab-item">
             <button 
@@ -53,7 +46,7 @@ const TabsNavigation: React.FC<TabsNavigationProps> = ({ activeTab, setActiveTab
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </span>
-              <span className="tab-text">Audience Segmentation</span>
+              <span className="tab-text">Methodology</span>
             </button>
           </li>
         </ul>

@@ -8,7 +8,7 @@ import PublisherChart from './PublisherChart';
 const TimeSeriesTab: React.FC = () => {
   return (
     <div className="tab-content">
-      <h2 className="section-title">Campaign Investment Analysis</h2>
+      <h2 className="tabs-section-title">Campaign Investment Analysis</h2>
       
       <BrandLeafChart />
       

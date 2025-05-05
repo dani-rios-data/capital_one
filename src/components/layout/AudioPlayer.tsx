@@ -52,6 +52,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ audioSrc }) => {
     <div className="audio-player">
       <div className="audio-player-inner" style={{ justifyContent: 'flex-start', marginLeft: 20 }}>
         <audio 
+          key={audioSrc}
           ref={audioRef}
           src={audioSrc}
           onTimeUpdate={handleTimeUpdate}

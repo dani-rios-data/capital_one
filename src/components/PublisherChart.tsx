@@ -327,6 +327,33 @@ const PublisherChart: React.FC = () => {
       filter={publisherFilter}
     >
       <div>
+        {/* Advertencia sobre agrupación/categorización de publishers */}
+        <div style={{
+          background: '#f3f4f6',
+          color: '#374151',
+          borderRadius: '8px',
+          padding: '14px 18px',
+          marginBottom: '18px',
+          display: 'flex',
+          alignItems: 'center',
+          fontSize: '15px',
+          fontWeight: 500,
+          boxShadow: '0 2px 8px rgba(0,0,0,0.04)'
+        }}>
+          <span style={{
+            color: '#d03027',
+            marginRight: '12px',
+            display: 'flex',
+            alignItems: 'center',
+            fontSize: '22px',
+            lineHeight: 1
+          }}>
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#d03027" strokeWidth="2"><circle cx="12" cy="12" r="10" stroke="#d03027" strokeWidth="2" fill="#fff"/><path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4m0 4h.01" stroke="#d03027" strokeWidth="2"/></svg>
+          </span>
+          <span>
+            <strong>Note:</strong> This chart currently displays the <b>top publishers</b> only. We are working on improved grouping and categorization for this variable.
+          </span>
+        </div>
         <div className="chart-container" id="publisher-chart-container" style={{ position: 'relative', width: '100%', height: '380px' }} ref={chartRef}>
           <ResponsiveContainer width="100%" height="100%">
             <LineChart 
@@ -360,7 +387,22 @@ const PublisherChart: React.FC = () => {
                 position={{ x: 0, y: 0 }}
                 offset={0}
               />
-              <Legend />
+              <Legend
+                verticalAlign="bottom"
+                align="center"
+                layout="horizontal"
+                iconSize={8}
+                iconType="circle"
+                wrapperStyle={{
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  padding: '0',
+                  fontSize: '11px',
+                  lineHeight: '16px',
+                  backgroundColor: 'transparent'
+                }}
+              />
               {selectedPublishers.map((publisher, index) => (
                 <Line
                   key={publisher.value}

@@ -225,7 +225,7 @@ const FeaturesTab: React.FC<{ setActiveTab?: (tab: string) => void }> = ({ setAc
           className="info-link" 
           onClick={handleNavigateToInfo}
         >
-          Information
+          Methodology
         </span> tab.
       </p>
       

@@ -947,7 +947,30 @@ g.recharts-layer.recharts-bar:hover {
 #device-chart-container .recharts-active-dot,
 #brand-chart-container .recharts-active-dot {
   cursor: pointer;
-  transform: scale(1.2);
+  /* Eliminar transformaciones para igualar con CategoryChart */
+  transform: scale(1) !important;
+  transform-origin: center center !important;
+  translate: 0px 0px !important;
+}
+
+/* Para asegurar que todos los puntos activos estén bien alineados */
+.recharts-active-dot {
+  translate: 0px 0px !important;
+  transform: none !important;
+  transform-origin: center center !important;
+  position: absolute !important;
+}
+
+/* Estilos consistentes para todos los puntos activos */
+#category-chart-container .recharts-active-dot {
+  cursor: pointer;
+}
+
+/* Corregir posición en tooltips */
+.recharts-tooltip-cursor {
+  pointer-events: none !important;
+  stroke-dasharray: 3 3 !important;
+  stroke: #666 !important;
 }
 
 /* Estilos para el scrollbar en la tooltip */

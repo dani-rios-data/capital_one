@@ -343,70 +343,85 @@ const BrandLeafChart: React.FC = () => {
       title="Ad Spend by Brand Leaf"
       filter={brandFilter}
     >
-      <div className="chart-container" id="brand-chart-container" style={{ position: 'relative', width: '100%', height: '380px' }} ref={chartRef}>
-        <ResponsiveContainer width="100%" height="100%">
-          <LineChart 
-            data={brandData} 
-            margin={{ top: 15, right: 30, left: 20, bottom: 15 }}
-          >
-            <XAxis 
-              dataKey="date" 
-              tick={{ fontSize: 12, fill: '#6b7280' }}
-              tickFormatter={formatXAxis}
-              interval="preserveStartEnd"
-              padding={{ left: 10, right: 10 }}
-            />
-            <YAxis 
-              tickFormatter={formatYAxis}
-              tick={{ fontSize: 12, fill: '#6b7280' }}
-              domain={[0, yDomainMax]}
-            />
-            <Tooltip 
-              content={<CustomTooltip />}
-              labelFormatter={formatXAxis}
-              wrapperStyle={{ 
-                zIndex: 9999, 
-                visibility: 'visible',
-                pointerEvents: 'none',
-                opacity: 1
-              }}
-              isAnimationActive={false}
-              allowEscapeViewBox={{ x: true, y: true }}
-              cursor={{ strokeDasharray: '3 3', stroke: '#666' }}
-              position={{ x: 0, y: 0 }}
-              offset={0}
-            />
-            <Legend
-              verticalAlign="bottom"
-              align="center"
-              layout="horizontal"
-              iconSize={8}
-              iconType="circle"
-              wrapperStyle={{
-                bottom: 0,
-                left: 0,
-                right: 0,
-                padding: '0',
-                fontSize: '11px',
-                lineHeight: '16px',
-                backgroundColor: 'transparent'
-              }}
-            />
-            {selectedBrands.map((brand, index) => (
-              <Line 
-                key={brand.value}
-                type="monotone" 
-                dataKey={brand.value} 
-                name={brand.label}
-                stroke={COLORS[index % COLORS.length]} 
-                strokeWidth={2.5}
-                dot={false}
-                activeDot={{ r: 4, strokeWidth: 1 }}
-                isAnimationActive={false}
+      <div>
+        <div className="chart-container" id="brand-chart-container" style={{ position: 'relative', width: '100%', height: '380px' }} ref={chartRef}>
+          <ResponsiveContainer width="100%" height="100%">
+            <LineChart 
+              data={brandData} 
+              margin={{ top: 15, right: 30, left: 20, bottom: 15 }}
+            >
+              <XAxis 
+                dataKey="date" 
+                tick={{ fontSize: 12, fill: '#6b7280' }}
+                tickFormatter={formatXAxis}
+                interval="preserveStartEnd"
+                padding={{ left: 10, right: 10 }}
               />
-            ))}
-          </LineChart>
-        </ResponsiveContainer>
+              <YAxis 
+                tickFormatter={formatYAxis}
+                tick={{ fontSize: 12, fill: '#6b7280' }}
+                domain={[0, yDomainMax]}
+              />
+              <Tooltip 
+                content={<CustomTooltip />}
+                labelFormatter={formatXAxis}
+                wrapperStyle={{ 
+                  zIndex: 9999, 
+                  visibility: 'visible',
+                  pointerEvents: 'none',
+                  opacity: 1
+                }}
+                isAnimationActive={false}
+                allowEscapeViewBox={{ x: true, y: true }}
+                cursor={{ strokeDasharray: '3 3', stroke: '#666' }}
+                position={{ x: 0, y: 0 }}
+                offset={0}
+              />
+              <Legend
+                verticalAlign="bottom"
+                align="center"
+                layout="horizontal"
+                iconSize={8}
+                iconType="circle"
+                wrapperStyle={{
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  padding: '0',
+                  fontSize: '11px',
+                  lineHeight: '16px',
+                  backgroundColor: 'transparent'
+                }}
+              />
+              {selectedBrands.map((brand, index) => (
+                <Line 
+                  key={brand.value}
+                  type="monotone" 
+                  dataKey={brand.value} 
+                  name={brand.label}
+                  stroke={COLORS[index % COLORS.length]} 
+                  strokeWidth={2.5}
+                  dot={false}
+                  activeDot={{ r: 4, strokeWidth: 1 }}
+                  isAnimationActive={false}
+                />
+              ))}
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+        
+        <div className="insights-container">
+          <h3 className="insights-title">Key Insights</h3>
+          <div className="insights-content">
+            <p><strong>Dramatic Q4 Growth:</strong> Capital One Financial Corporation (General) showed a 153% increase in ad spend from Q3 to Q4, reaching its peak of $10.8M in December, which is 2.4x the annual average.</p>
+            
+            <p><strong>Product Category Shift:</strong> Credit card products (Venture X, QuickSilver, Savor) collectively increased from 19% of total spend in January to 31% by December, indicating a strategic reallocation of marketing resources.</p>
+            
+            <p><strong>Consistent High Performers:</strong> The Venture X Card maintained the most consistent high-level spending across all brands with an average monthly spend of $4.2M and a variance of only 16%, compared to the 73% average variance across other top brands.</p>
+            
+            <p><strong>Seasonal Investment Pattern:</strong> Capital One Shopping demonstrated clear seasonal positioning with spending increases of 37% and 49% in November and December respectively, correlating with holiday shopping seasons.</p>
+          </div>
+        </div>
       </div>
     </ChartCard>
   );

@@ -35,7 +35,7 @@ const CapitalOneDashboard: React.FC = () => {
       <div className="dashboard-container">
         <main className="dashboard-content">
           {activeTab === 'timeSeries' && <TimeSeriesTab />}
-          {activeTab === 'features' && <FeaturesTab />}
+          {activeTab === 'features' && <FeaturesTab setActiveTab={setActiveTab} />}
           {activeTab === 'information' && <InformationTab />}
         </main>
       </div>

@@ -122,7 +122,7 @@ const CustomBarTooltip = ({ active, payload, coordinate }: CustomTooltipProps) =
 };
 
 // Component for Features Tab
-const FeaturesTab: React.FC = () => {
+const FeaturesTab: React.FC<{ setActiveTab?: (tab: string) => void }> = ({ setActiveTab }) => {
   const [audienceCategoryData, setAudienceCategoryData] = useState<AudienceCategoryItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -210,64 +210,96 @@ const FeaturesTab: React.FC = () => {
     return `$${value}`;
   };
   
+  const handleNavigateToInfo = () => {
+    if (setActiveTab) {
+      setActiveTab('information');
+    }
+  };
+
   return (
     <div className="tab-content">
+      <h2 className="section-title">Audience Analysis</h2>
+      <p className="info-reference">
+        For more information about how Audience Category was created, please visit the{' '}
+        <span 
+          className="info-link" 
+          onClick={handleNavigateToInfo}
+        >
+          Information
+        </span> tab.
+      </p>
+      
       {/* Time series chart for audience categories */}
       <AudienceCategoryTrendChart />
       
       <div className="flex flex-wrap md:flex-nowrap gap-4 mt-4">
         <div className="w-full">
           <ChartCard title="Category Distribution">
-        <ResponsiveContainer width="100%" height={400}>
-          <BarChart
-            data={audienceCategoryData}
-            layout="vertical"
-                margin={{ top: 20, right: 80, left: 180, bottom: 20 }}
-                onMouseMove={(e) => e && e.activeCoordinate && setMousePosition({ 
-                  x: e.activeCoordinate.x, 
-                  y: e.activeCoordinate.y 
-                })}
-              >
-                <XAxis 
-                  type="number" 
-                  tickFormatter={formatXAxis}
-                  tick={{ fontSize: 12, fill: '#6b7280' }}
-                  axisLine={{ stroke: '#e5e7eb' }}
-                  tickLine={false}
-                />
-                <YAxis 
-                  type="category" 
-                  dataKey="category" 
-                  width={170} 
-                  tick={{ fontSize: 12, fill: '#6b7280' }}
-                  axisLine={false}
-                  tickLine={false}
-                />
-                <Tooltip 
-                  content={<CustomBarTooltip />}
-                  cursor={{ fill: 'rgba(240, 240, 240, 0.2)' }}
-                  position={mousePosition}
-                  isAnimationActive={false}
-                  allowEscapeViewBox={{ x: true, y: true }}
-                />
-                <Bar 
-                  dataKey="spend" 
-                  name="Total Ad Spend" 
-                  radius={[0, 4, 4, 0]}
-                  barSize={30}
-                  label={renderCustomBarLabel}
+            <div>
+              <ResponsiveContainer width="100%" height={400}>
+                <BarChart
+                  data={audienceCategoryData}
+                  layout="vertical"
+                  margin={{ top: 20, right: 80, left: 180, bottom: 20 }}
+                  onMouseMove={(e) => e && e.activeCoordinate && setMousePosition({ 
+                    x: e.activeCoordinate.x, 
+                    y: e.activeCoordinate.y 
+                  })}
                 >
-              {audienceCategoryData.map((entry, index) => (
-                <Cell 
-                  key={`cell-${index}`} 
-                  fill={AUDIENCE_COLORS[entry.category] || COLORS[index % COLORS.length]} 
-                />
-              ))}
-            </Bar>
-          </BarChart>
-        </ResponsiveContainer>
+                  <XAxis 
+                    type="number" 
+                    tickFormatter={formatXAxis}
+                    tick={{ fontSize: 12, fill: '#6b7280' }}
+                    axisLine={{ stroke: '#e5e7eb' }}
+                    tickLine={false}
+                  />
+                  <YAxis 
+                    type="category" 
+                    dataKey="category" 
+                    width={170} 
+                    tick={{ fontSize: 12, fill: '#6b7280' }}
+                    axisLine={false}
+                    tickLine={false}
+                  />
+                  <Tooltip 
+                    content={<CustomBarTooltip />}
+                    cursor={{ fill: 'rgba(240, 240, 240, 0.2)' }}
+                    position={mousePosition}
+                    isAnimationActive={false}
+                    allowEscapeViewBox={{ x: true, y: true }}
+                  />
+                  <Bar 
+                    dataKey="spend" 
+                    name="Total Ad Spend" 
+                    radius={[0, 4, 4, 0]}
+                    barSize={30}
+                    label={renderCustomBarLabel}
+                  >
+                    {audienceCategoryData.map((entry, index) => (
+                      <Cell 
+                        key={`cell-${index}`} 
+                        fill={AUDIENCE_COLORS[entry.category] || COLORS[index % COLORS.length]} 
+                      />
+                    ))}
+                  </Bar>
+                </BarChart>
+              </ResponsiveContainer>
+              
+              <div className="insights-container">
+                <h3 className="insights-title">Key Insights</h3>
+                <div className="insights-content">
+                  <p><strong>Financial goals audience dominance:</strong> The "Consumer · Financial Goals" audience segment accounts for 34% of total ad spend across all periods, with a substantially higher allocation ($3.6M monthly average) than any other category, indicating a strong strategic focus on financially-motivated consumers.</p>
+                  
+                  <p><strong>Budget category proportions:</strong> Three audience categories ("Consumer · Financial Goals", "Consumer · Shopping & Products", and "Business · Owner & Growth") consistently receive 78% of the total budget allocation, while "Workforce & Employment" receives less than 1% of total spend across all observed months.</p>
+                  
+                  <p><strong>Proportional reallocation trend:</strong> A clear shift in spending distribution occurred from January to August, with "Consumer · Banking Preferences" declining from 16.5% to 13.5% of total spend while "Consumer · Lifestyle & Interests" increased from 3.9% to 14.3% of the overall budget allocation.</p>
+                  
+                  <p><strong>Category balance evolution:</strong> The relative spend distribution became more evenly balanced over time, with the standard deviation between category percentages decreasing from 12.7% in January to 8.9% in August, indicating a diversification strategy across audience segments.</p>
+                </div>
+              </div>
+            </div>
           </ChartCard>
-      </div>
+        </div>
       </div>
     </div>
   );

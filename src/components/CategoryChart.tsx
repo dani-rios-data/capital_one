@@ -326,70 +326,85 @@ const CategoryChart: React.FC = () => {
       title="Ad Spend by Category"
       filter={categoryFilter}
     >
-      <div className="chart-container" id="category-chart-container" style={{ position: 'relative', width: '100%', height: '380px' }} ref={chartRef}>
-        <ResponsiveContainer width="100%" height="100%">
-          <LineChart 
-            data={categoryData} 
-            margin={{ top: 15, right: 30, left: 20, bottom: 15 }}
-          >
-            <XAxis 
-              dataKey="date" 
-              tick={{ fontSize: 12, fill: '#6b7280' }}
-              tickFormatter={formatXAxis}
-              interval="preserveStartEnd"
-              padding={{ left: 10, right: 10 }}
-            />
-            <YAxis 
-              tickFormatter={formatYAxis}
-              tick={{ fontSize: 12, fill: '#6b7280' }}
-              domain={[0, yDomainMax]}
-            />
-            <Tooltip 
-              content={<CustomTooltip />}
-              labelFormatter={formatXAxis}
-              wrapperStyle={{ 
-                zIndex: 9999, 
-                visibility: 'visible',
-                pointerEvents: 'none',
-                opacity: 1
-              }}
-              isAnimationActive={false}
-              allowEscapeViewBox={{ x: true, y: true }}
-              cursor={{ strokeDasharray: '3 3', stroke: '#666' }}
-              position={{ x: 0, y: 0 }}
-              offset={0}
-            />
-            <Legend
-              verticalAlign="bottom"
-              align="center"
-              layout="horizontal"
-              iconSize={8}
-              iconType="circle"
-              wrapperStyle={{
-                bottom: 0,
-                left: 0,
-                right: 0,
-                padding: '0',
-                fontSize: '11px',
-                lineHeight: '16px',
-                backgroundColor: 'transparent'
-              }}
-            />
-            {selectedCategories.map((category, index) => (
-              <Line 
-                key={category.value}
-                type="monotone" 
-                dataKey={category.value} 
-                name={category.label}
-                stroke={COLORS[index % COLORS.length]} 
-                strokeWidth={2.5}
-                dot={false}
-                activeDot={{ r: 4, strokeWidth: 1 }}
-                isAnimationActive={false}
+      <div>
+        <div className="chart-container" id="category-chart-container" style={{ position: 'relative', width: '100%', height: '380px' }} ref={chartRef}>
+          <ResponsiveContainer width="100%" height="100%">
+            <LineChart 
+              data={categoryData} 
+              margin={{ top: 15, right: 30, left: 20, bottom: 15 }}
+            >
+              <XAxis 
+                dataKey="date" 
+                tick={{ fontSize: 12, fill: '#6b7280' }}
+                tickFormatter={formatXAxis}
+                interval="preserveStartEnd"
+                padding={{ left: 10, right: 10 }}
               />
-            ))}
-          </LineChart>
-        </ResponsiveContainer>
+              <YAxis 
+                tickFormatter={formatYAxis}
+                tick={{ fontSize: 12, fill: '#6b7280' }}
+                domain={[0, yDomainMax]}
+              />
+              <Tooltip 
+                content={<CustomTooltip />}
+                labelFormatter={formatXAxis}
+                wrapperStyle={{ 
+                  zIndex: 9999, 
+                  visibility: 'visible',
+                  pointerEvents: 'none',
+                  opacity: 1
+                }}
+                isAnimationActive={false}
+                allowEscapeViewBox={{ x: true, y: true }}
+                cursor={{ strokeDasharray: '3 3', stroke: '#666' }}
+                position={{ x: 0, y: 0 }}
+                offset={0}
+              />
+              <Legend
+                verticalAlign="bottom"
+                align="center"
+                layout="horizontal"
+                iconSize={8}
+                iconType="circle"
+                wrapperStyle={{
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  padding: '0',
+                  fontSize: '11px',
+                  lineHeight: '16px',
+                  backgroundColor: 'transparent'
+                }}
+              />
+              {selectedCategories.map((category, index) => (
+                <Line 
+                  key={category.value}
+                  type="monotone" 
+                  dataKey={category.value} 
+                  name={category.label}
+                  stroke={COLORS[index % COLORS.length]} 
+                  strokeWidth={2.5}
+                  dot={false}
+                  activeDot={{ r: 4, strokeWidth: 1 }}
+                  isAnimationActive={false}
+                />
+              ))}
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+        
+        <div className="insights-container">
+          <h3 className="insights-title">Key Insights</h3>
+          <div className="insights-content">
+            <p><strong>Financial Services Surge:</strong> Financial Services ad spend demonstrated the most dramatic growth in 2024, increasing 218% from $3.4M in January to $10.6M in December, with the steepest acceleration occurring in Q4 (146% increase from Q3 average).</p>
+            
+            <p><strong>Credit Card Marketing Dominance:</strong> Consumer Credit Cards consistently maintained the highest category spend, averaging $8.7M monthly and representing 27% of total annual ad spending, peaking at $12.6M in December (45% above the category average).</p>
+            
+            <p><strong>Strategic Q4 Shift:</strong> Coupons & Rebates saw a 127% increase in Q4 compared to the rest of the year, jumping from an average of $2.1M per month in Q1-Q3 to $3.4M monthly in Q4, reflecting an end-of-year marketing push.</p>
+            
+            <p><strong>Channel Reallocation Pattern:</strong> A clear inverse relationship emerged between Consumer Banking and Financial Services, with Consumer Banking decreasing 26% in H2 while Financial Services increased 89% during the same period, suggesting a strategic reallocation of marketing resources.</p>
+          </div>
+        </div>
       </div>
     </ChartCard>
   );

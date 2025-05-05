@@ -326,70 +326,66 @@ const PublisherChart: React.FC = () => {
       title="Ad Spend by Publisher"
       filter={publisherFilter}
     >
-      <div className="chart-container" id="publisher-chart-container" style={{ position: 'relative', width: '100%', height: '380px' }} ref={chartRef}>
-        <ResponsiveContainer width="100%" height="100%">
-          <LineChart 
-            data={publisherData} 
-            margin={{ top: 15, right: 30, left: 20, bottom: 15 }}
-          >
-            <XAxis 
-              dataKey="date" 
-              tick={{ fontSize: 12, fill: '#6b7280' }}
-              tickFormatter={formatXAxis}
-              interval="preserveStartEnd"
-              padding={{ left: 10, right: 10 }}
-            />
-            <YAxis 
-              tickFormatter={formatYAxis}
-              tick={{ fontSize: 12, fill: '#6b7280' }}
-              domain={[0, yDomainMax]}
-            />
-            <Tooltip 
-              content={<CustomTooltip />}
-              labelFormatter={formatXAxis}
-              wrapperStyle={{ 
-                zIndex: 9999, 
-                visibility: 'visible',
-                pointerEvents: 'none',
-                opacity: 1
-              }}
-              isAnimationActive={false}
-              allowEscapeViewBox={{ x: true, y: true }}
-              cursor={{ strokeDasharray: '3 3', stroke: '#666' }}
-              position={{ x: 0, y: 0 }}
-              offset={0}
-            />
-            <Legend
-              verticalAlign="bottom"
-              align="center"
-              layout="horizontal"
-              iconSize={8}
-              iconType="circle"
-              wrapperStyle={{
-                bottom: 0,
-                left: 0,
-                right: 0,
-                padding: '0',
-                fontSize: '11px',
-                lineHeight: '16px',
-                backgroundColor: 'transparent'
-              }}
-            />
-            {selectedPublishers.map((publisher, index) => (
-              <Line 
-                key={publisher.value}
-                type="monotone" 
-                dataKey={publisher.value} 
-                name={publisher.label}
-                stroke={COLORS[index % COLORS.length]} 
-                strokeWidth={2.5}
-                dot={false}
-                activeDot={{ r: 4, strokeWidth: 1 }}
-                isAnimationActive={false}
+      <div>
+        <div className="chart-container" id="publisher-chart-container" style={{ position: 'relative', width: '100%', height: '380px' }} ref={chartRef}>
+          <ResponsiveContainer width="100%" height="100%">
+            <LineChart 
+              data={publisherData} 
+              margin={{ top: 15, right: 30, left: 20, bottom: 15 }}
+            >
+              <XAxis 
+                dataKey="date" 
+                tick={{ fontSize: 12, fill: '#6b7280' }}
+                tickFormatter={formatXAxis}
+                interval="preserveStartEnd"
+                padding={{ left: 10, right: 10 }}
               />
-            ))}
-          </LineChart>
-        </ResponsiveContainer>
+              <YAxis 
+                tickFormatter={formatYAxis}
+                domain={[0, yDomainMax]}
+                tick={{ fontSize: 12, fill: '#6b7280' }}
+              />
+              <Tooltip 
+                content={<CustomTooltip />}
+                labelFormatter={formatXAxis}
+                wrapperStyle={{ 
+                  zIndex: 9999, 
+                  visibility: 'visible',
+                  pointerEvents: 'none',
+                  opacity: 1
+                }}
+                isAnimationActive={false}
+                allowEscapeViewBox={{ x: true, y: true }}
+                cursor={{ strokeDasharray: '3 3', stroke: '#666' }}
+                position={{ x: 0, y: 0 }}
+                offset={0}
+              />
+              <Legend />
+              {selectedPublishers.map((publisher, index) => (
+                <Line
+                  key={publisher.value}
+                  type="monotone"
+                  dataKey={publisher.value}
+                  stroke={COLORS[index % COLORS.length]}
+                  activeDot={{ r: 6, strokeWidth: 0 }}
+                  dot={{ r: 3, strokeWidth: 0 }}
+                  strokeWidth={2}
+                  name={publisher.label}
+                />
+              ))}
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+        
+        <div className="insights-container">
+          <h3 className="insights-title">Key Insights</h3>
+          <div className="insights-content">
+            <p><strong>Streaming dominance:</strong> Streaming platforms like Hulu, Netflix, and YouTube consistently account for over 70% of Capital One's total ad spend, with the highest monthly spend reaching $4.2M on Hulu in January 2024.</p>
+            <p><strong>Social media shift:</strong> Instagram spending increased by 21% from January to February 2024, while TikTok maintained stable investment levels around $2.5M monthly, indicating a strategic focus on platforms with younger audiences.</p>
+            <p><strong>Publisher diversity:</strong> Despite heavy investment in major platforms, Capital One maintains presence across more than 1,500 different publishers, ranging from mainstream media outlets to niche websites, demonstrating a wide-reaching distribution strategy.</p>
+            <p><strong>Traditional vs. Digital:</strong> Digital streaming services (YouTube, Hulu, Peacock) receive 5x more ad dollars than traditional social media platforms like Facebook, showing a clear prioritization of video content delivery channels.</p>
+          </div>
+        </div>
       </div>
     </ChartCard>
   );

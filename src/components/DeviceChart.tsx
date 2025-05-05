@@ -326,70 +326,85 @@ const DeviceChart: React.FC = () => {
       title="Ad Spend by Device"
       filter={deviceFilter}
     >
-      <div className="chart-container" id="device-chart-container" style={{ position: 'relative', width: '100%', height: '380px' }} ref={chartRef}>
-        <ResponsiveContainer width="100%" height="100%">
-          <LineChart 
-            data={deviceData} 
-            margin={{ top: 15, right: 30, left: 20, bottom: 15 }}
-          >
-            <XAxis 
-              dataKey="date" 
-              tick={{ fontSize: 12, fill: '#6b7280' }}
-              tickFormatter={formatXAxis}
-              interval="preserveStartEnd"
-              padding={{ left: 10, right: 10 }}
-            />
-            <YAxis 
-              tickFormatter={formatYAxis}
-              tick={{ fontSize: 12, fill: '#6b7280' }}
-              domain={[0, yDomainMax]}
-            />
-            <Tooltip 
-              content={<CustomTooltip />}
-              labelFormatter={formatXAxis}
-              wrapperStyle={{ 
-                zIndex: 9999, 
-                visibility: 'visible',
-                pointerEvents: 'none',
-                opacity: 1
-              }}
-              isAnimationActive={false}
-              allowEscapeViewBox={{ x: true, y: true }}
-              cursor={{ strokeDasharray: '3 3', stroke: '#666' }}
-              position={{ x: 0, y: 0 }}
-              offset={0}
-            />
-            <Legend
-              verticalAlign="bottom"
-              align="center"
-              layout="horizontal"
-              iconSize={8}
-              iconType="circle"
-              wrapperStyle={{
-                bottom: 0,
-                left: 0,
-                right: 0,
-                padding: '0',
-                fontSize: '11px',
-                lineHeight: '16px',
-                backgroundColor: 'transparent'
-              }}
-            />
-            {selectedDevices.map((device, index) => (
-              <Line 
-                key={device.value}
-                type="monotone" 
-                dataKey={device.value} 
-                name={device.label}
-                stroke={COLORS[index % COLORS.length]} 
-                strokeWidth={2.5}
-                dot={false}
-                activeDot={{ r: 4, strokeWidth: 1 }}
-                isAnimationActive={false}
+      <div>
+        <div className="chart-container" id="device-chart-container" style={{ position: 'relative', width: '100%', height: '380px' }} ref={chartRef}>
+          <ResponsiveContainer width="100%" height="100%">
+            <LineChart 
+              data={deviceData} 
+              margin={{ top: 15, right: 30, left: 20, bottom: 15 }}
+            >
+              <XAxis 
+                dataKey="date" 
+                tick={{ fontSize: 12, fill: '#6b7280' }}
+                tickFormatter={formatXAxis}
+                interval="preserveStartEnd"
+                padding={{ left: 10, right: 10 }}
               />
-            ))}
-          </LineChart>
-        </ResponsiveContainer>
+              <YAxis 
+                tickFormatter={formatYAxis}
+                tick={{ fontSize: 12, fill: '#6b7280' }}
+                domain={[0, yDomainMax]}
+              />
+              <Tooltip 
+                content={<CustomTooltip />}
+                labelFormatter={formatXAxis}
+                wrapperStyle={{ 
+                  zIndex: 9999, 
+                  visibility: 'visible',
+                  pointerEvents: 'none',
+                  opacity: 1
+                }}
+                isAnimationActive={false}
+                allowEscapeViewBox={{ x: true, y: true }}
+                cursor={{ strokeDasharray: '3 3', stroke: '#666' }}
+                position={{ x: 0, y: 0 }}
+                offset={0}
+              />
+              <Legend
+                verticalAlign="bottom"
+                align="center"
+                layout="horizontal"
+                iconSize={8}
+                iconType="circle"
+                wrapperStyle={{
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  padding: '0',
+                  fontSize: '11px',
+                  lineHeight: '16px',
+                  backgroundColor: 'transparent'
+                }}
+              />
+              {selectedDevices.map((device, index) => (
+                <Line 
+                  key={device.value}
+                  type="monotone" 
+                  dataKey={device.value} 
+                  name={device.label}
+                  stroke={COLORS[index % COLORS.length]} 
+                  strokeWidth={2.5}
+                  dot={false}
+                  activeDot={{ r: 4, strokeWidth: 1 }}
+                  isAnimationActive={false}
+                />
+              ))}
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+        
+        <div className="insights-container">
+          <h3 className="insights-title">Key Insights</h3>
+          <div className="insights-content">
+            <p><strong>OTT Dominance:</strong> OTT (Over-The-Top) media maintained the highest monthly ad spend throughout 2024, averaging $10.2M per month and accounting for 32% of the total annual ad spend, showing Capital One's strong focus on streaming platforms.</p>
+            
+            <p><strong>Instagram's Exponential Growth:</strong> Instagram ad spend saw a 229% increase from January ($4.2M) to December ($13.7M), with the most dramatic rise in Q4 (56% increase from Q3), indicating a significant shift toward this platform for end-of-year campaigns.</p>
+            
+            <p><strong>Desktop vs. Mobile Disparity:</strong> Desktop Display consistently outperformed Mobile Display by an average ratio of 33:1, with Desktop Display receiving $5.7M monthly versus Mobile Display's $170K, highlighting a clear prioritization of desktop advertising channels.</p>
+            
+            <p><strong>Year-End Platform Shifts:</strong> While most platforms maintained relatively stable spending patterns, Instagram (+145%) and Desktop Display (+80%) showed substantial increases in Q4 compared to the yearly average, demonstrating a strategic reallocation for holiday season advertising.</p>
+          </div>
+        </div>
       </div>
     </ChartCard>
   );

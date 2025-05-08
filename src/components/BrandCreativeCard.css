@@ -1,0 +1,105 @@
+.brand-creative-container {
+  width: 380px;
+  min-width: 380px;
+  max-width: 380px;
+  flex: 0 0 380px;
+  overflow: hidden;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(229, 231, 235, 0.5);
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.brand-creative-container:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
+}
+
+.brand-creative-info {
+  padding: 1.75rem 1.25rem 1.5rem;
+  background-color: white;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.brand-title {
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: #1f2937;
+  margin: 0 0 0.25rem;
+  line-height: 1.3;
+}
+
+.brand-rank-badge {
+  background-color: #eef6ff;
+  color: #1a73e8;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.45rem 1.2rem;
+  border-radius: 9999px;
+  display: inline-block;
+  box-shadow: 0 1px 2px rgba(0, 105, 175, 0.08);
+  border: 1px solid rgba(3, 105, 161, 0.05);
+  margin-bottom: 0.25rem;
+}
+
+.brand-spend {
+  font-weight: 700;
+  color: #16a34a;
+  font-size: 1.6rem;
+  margin: 0.25rem 0 0;
+}
+
+.brand-creative-media {
+  height: 240px;
+  width: 100%;
+  background-color: #f3f4f6;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+}
+
+.brand-creative-media::after {
+  content: '';
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 30px;
+  height: 30px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='white'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14'%3E%3C/path%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.7;
+  z-index: 2;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.3));
+  transition: opacity 0.2s;
+}
+
+.brand-creative-media:hover::after {
+  opacity: 1;
+}
+
+.clickable-media {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.brand-creative-media:hover .clickable-media {
+  transform: scale(1.05);
+}
+
+.brand-creative-media img,
+.brand-creative-media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+} 

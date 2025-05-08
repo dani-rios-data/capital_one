@@ -1,0 +1,186 @@
+/* Estilos para el componente Top3ByBrandLeaf */
+
+/* Badges para fecha y marca */
+.date-badge {
+  background-color: #eef6ff;
+  color: #1a73e8;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.5rem 1.25rem;
+  border-radius: 9999px;
+  display: inline-block;
+  box-shadow: 0 1px 2px rgba(0, 105, 175, 0.05);
+  border: 1px solid rgba(3, 105, 161, 0.08);
+  margin-right: 0.5rem;
+}
+
+.brand-badge {
+  background-color: #ecfdf5;
+  color: #16a34a;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.5rem 1.25rem;
+  border-radius: 9999px;
+  display: inline-block;
+  box-shadow: 0 1px 2px rgba(22, 163, 74, 0.05);
+  border: 1px solid rgba(22, 163, 74, 0.08);
+}
+
+/* Badges contenedor */
+.badges-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.badges-separator {
+  color: #d1d5db;
+  margin: 0 0.5rem;
+  font-weight: 300;
+}
+
+/* Contenedor principal para la galería */
+.horizontal-gallery-container {
+  display: flex;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  justify-content: center;
+  align-items: stretch;
+  width: 100%;
+  overflow-x: auto;
+  padding: 0.5rem 0 2rem;
+  margin: 0.5rem 0 1rem;
+  scrollbar-width: thin;
+  scrollbar-color: #d1d5db #f3f4f6;
+}
+
+/* Estilizar la barra de desplazamiento */
+.horizontal-gallery-container::-webkit-scrollbar {
+  height: 6px;
+}
+
+.horizontal-gallery-container::-webkit-scrollbar-track {
+  background: #f3f4f6;
+  border-radius: 4px;
+}
+
+.horizontal-gallery-container::-webkit-scrollbar-thumb {
+  background-color: #d1d5db;
+  border-radius: 4px;
+}
+
+/* Contenedor interno de las tarjetas */
+.cards-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 1.75rem;
+  margin: 0 auto;
+  padding: 0.75rem 0.5rem;
+}
+
+/* Prevenir que responsive media queries afecten el layout */
+@media (max-width: 768px) {
+  .horizontal-gallery-container,
+  .cards-row {
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+  }
+}
+
+/* Mensaje de no resultados */
+.empty-result-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1rem;
+  text-align: center;
+}
+
+.empty-result-icon {
+  background-color: #f3f4f6;
+  border-radius: 50%;
+  width: 3.5rem;
+  height: 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.empty-result-text {
+  color: #6b7280;
+  font-size: 1rem;
+  font-style: italic;
+  max-width: 400px;
+}
+
+/* Resto de los estilos no usados se mantienen por compatibilidad */
+.creative-card {
+  width: 100%;
+  max-width: 350px;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  border: 1px solid #e5e7eb;
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+}
+
+.creative-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.creative-info {
+  padding: 1rem;
+  background-color: white;
+  text-align: center;
+}
+
+.creative-title {
+  font-weight: 700;
+  font-size: 1.25rem;
+  margin-bottom: 0.25rem;
+  color: #1f2937;
+}
+
+.creative-date {
+  color: #6b7280;
+  margin-bottom: 0.5rem;
+}
+
+.creative-link {
+  font-size: 0.75rem;
+  color: #6b7280;
+  font-family: monospace;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 0.5rem;
+}
+
+.creative-rank {
+  font-size: 0.875rem;
+  margin-bottom: 0.25rem;
+}
+
+.creative-price {
+  font-weight: 600;
+  color: #059669;
+}
+
+.creative-media {
+  height: 200px;
+  width: 100%;
+  background-color: #f3f4f6;
+}
+
+.creative-media img,
+.creative-media video {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+} 

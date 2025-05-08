@@ -5,6 +5,7 @@ import CategoryChart from './CategoryChart';
 import PublisherChart from './PublisherChart';
 import Top3ByBrandLeaf from './Top3ByBrandLeaf';
 import Top3ByDevice from './Top3ByDevice';
+import Top3ByCategory from './Top3ByCategory';
 
 // Componente para la pestaña de Series de Tiempo
 const TimeSeriesTab: React.FC = () => {
@@ -21,6 +22,8 @@ const TimeSeriesTab: React.FC = () => {
       <Top3ByDevice />
       
       <CategoryChart />
+      
+      <Top3ByCategory />
       
       <PublisherChart />
     </div>

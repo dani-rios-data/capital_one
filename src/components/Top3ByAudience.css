@@ -1,0 +1,86 @@
+/* Contenedores para la galería horizontal */
+.horizontal-gallery-container {
+  overflow-x: auto;
+  padding-bottom: 16px;
+  margin-top: 20px;
+}
+
+.cards-row {
+  display: flex;
+  gap: 24px;
+  padding: 4px 0;
+}
+
+/* Badges bajo el filtro */
+.badges-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.date-badge, .audience-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: 16px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.date-badge {
+  background-color: #edf2fc;
+  color: #1a56db;
+}
+
+.audience-badge {
+  background-color: #f0e6fe;
+  color: #6842c2;
+}
+
+.badges-separator {
+  color: #9ca3af;
+  font-weight: 500;
+}
+
+/* Mensaje cuando no hay resultados */
+.empty-result-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 16px;
+  background-color: #f9fafb;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+.empty-result-icon {
+  background-color: #f3f4f6;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.empty-result-text {
+  font-size: 0.875rem;
+  color: #6b7280;
+  text-align: center;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .cards-row {
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .horizontal-gallery-container {
+    overflow-x: visible;
+  }
+} 

@@ -259,6 +259,92 @@ const InformationTab: React.FC = () => {
             </ul>
           </div>
         </section>
+        
+        <section style={styles.methodologySection}>
+          <h2 style={styles.sectionTitle}>Top Ads Calculation Methodology</h2>
+          <p style={styles.paragraph}>
+            The calculation of top ads by spend follows a systematic approach:
+          </p>
+          <p style={styles.subsegmentTitle}>Data Loading and Preprocessing:</p>
+          <ul style={styles.bulletList}>
+            <li style={styles.bulletItem}>
+              <span style={styles.bulletPoint}></span>
+              <div>The pipeline loads the raw data from the Nielsen Ad Intel CSV file</div>
+            </li>
+            <li style={styles.bulletItem}>
+              <span style={styles.bulletPoint}></span>
+              <div>It processes only the necessary columns: Date, category (Brand, Device, Publisher, etc.), Spend (USD), and Link to Creative</div>
+            </li>
+            <li style={styles.bulletItem}>
+              <span style={styles.bulletPoint}></span>
+              <div>Dates are normalized to the first day of each month for consistent monthly analysis</div>
+            </li>
+            <li style={styles.bulletItem}>
+              <span style={styles.bulletPoint}></span>
+              <div>Records with missing values in key fields are filtered out</div>
+            </li>
+          </ul>
+          
+          <p style={styles.subsegmentTitle}>Aggregation and Deduplication:</p>
+          <ul style={styles.bulletList}>
+            <li style={styles.bulletItem}>
+              <span style={styles.bulletPoint}></span>
+              <div>The data is grouped by Date, category, and Link to Creative</div>
+            </li>
+            <li style={styles.bulletItem}>
+              <span style={styles.bulletPoint}></span>
+              <div>For each unique combination, the Spend (USD) values are summed</div>
+            </li>
+            <li style={styles.bulletItem}>
+              <span style={styles.bulletPoint}></span>
+              <div>This ensures that identical creative links within the same month and category have their spend consolidated</div>
+            </li>
+          </ul>
+          
+          <p style={styles.subsegmentTitle}>Top Selection Process:</p>
+          <ul style={styles.bulletList}>
+            <li style={styles.bulletItem}>
+              <span style={styles.bulletPoint}></span>
+              <div>The aggregated data is sorted in descending order by spend amount</div>
+            </li>
+            <li style={styles.bulletItem}>
+              <span style={styles.bulletPoint}></span>
+              <div>For each Date-category combination, the system:</div>
+            </li>
+            <li style={{...styles.bulletItem, marginLeft: '20px'}}>
+              <span style={styles.bulletPoint}></span>
+              <div>Ensures no duplicate creative links (using drop_duplicates())</div>
+            </li>
+            <li style={{...styles.bulletItem, marginLeft: '20px'}}>
+              <span style={styles.bulletPoint}></span>
+              <div>Selects the top 3 ads with the highest spend</div>
+            </li>
+            <li style={styles.bulletItem}>
+              <span style={styles.bulletPoint}></span>
+              <div>This creates a dataset with the highest-performing ads for each category by month</div>
+            </li>
+          </ul>
+          
+          <p style={styles.subsegmentTitle}>Output Formatting:</p>
+          <ul style={styles.bulletList}>
+            <li style={styles.bulletItem}>
+              <span style={styles.bulletPoint}></span>
+              <div>Column names are standardized (e.g., "Spend (USD)" becomes "Spend_USD")</div>
+            </li>
+            <li style={styles.bulletItem}>
+              <span style={styles.bulletPoint}></span>
+              <div>Dates are formatted as YYYY-MM strings</div>
+            </li>
+            <li style={styles.bulletItem}>
+              <span style={styles.bulletPoint}></span>
+              <div>The final data is exported to CSV files by category type</div>
+            </li>
+          </ul>
+          
+          <p style={styles.paragraph}>
+            This methodology ensures that the dashboard displays only the most significant advertising investments for each category and time period, with no duplicate creative assets, providing clear insights into Capital One's advertising strategy and spend allocation.
+          </p>
+        </section>
       </div>
     </div>
   );

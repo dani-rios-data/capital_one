@@ -9,6 +9,7 @@ import {
 } from '../utils/csvUtils';
 import ChartCard from './common/ChartCard';
 import AudienceCategoryTrendChart from './AudienceCategoryTrendChart';
+import Top3ByAudience from './Top3ByAudience';
 
 interface AudienceCategoryItem {
   category: string;
@@ -231,6 +232,9 @@ const FeaturesTab: React.FC<{ setActiveTab?: (tab: string) => void }> = ({ setAc
       
       {/* Time series chart for audience categories */}
       <AudienceCategoryTrendChart />
+      
+      {/* Top 3 creatives by audience */}
+      <Top3ByAudience />
       
       <div className="flex flex-wrap md:flex-nowrap gap-4 mt-4">
         <div className="w-full">

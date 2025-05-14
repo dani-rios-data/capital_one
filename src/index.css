@@ -254,6 +254,64 @@ body {
   font-size: 13px;
 }
 
+/* Estilos para la nueva pestaña de chatbot */
+.tab-link.chatbot-tab {
+  background: linear-gradient(135deg, #d03027, #991f1c);
+  color: white;
+  border-radius: 12px 12px 0 0;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 -2px 8px rgba(208, 48, 39, 0.2);
+}
+
+.tab-link.chatbot-tab::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: white;
+  opacity: 0;
+  transform: translateY(-3px);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.tab-link.chatbot-tab:hover::before,
+.tab-link.chatbot-tab.active::before {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.tab-link.chatbot-tab.active {
+  background: linear-gradient(135deg, #d03027, #c62828);
+  color: white;
+  box-shadow: 0 -3px 12px rgba(208, 48, 39, 0.3);
+}
+
+.tab-link.chatbot-tab:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 -4px 12px rgba(208, 48, 39, 0.4);
+}
+
+.tab-link.chatbot-tab .tab-icon {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  padding: 4px;
+}
+
+.tab-link.chatbot-tab .tab-text {
+  font-weight: 600;
+}
+
+/* Estilos para contenedor del chatbot en el dashboard */
+.chatbot-dashboard-container {
+  padding: 0;
+  height: calc(100vh - 220px);
+  display: flex;
+  flex-direction: column;
+}
+
 /* Mejora de la interacción al cambiar pestañas */
 @keyframes tabSlideIn {
   from {

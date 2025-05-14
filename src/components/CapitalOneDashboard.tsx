@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import TimeSeriesTab from './TimeSeriesTab';
 import FeaturesTab from './FeaturesTab';
 import InformationTab from './InformationTab';
+import ChatbotTab from './ChatbotTab';
 import Header from './layout/Header';
 import TabsNavigation from './layout/TabsNavigation';
 import AudioPlayer from './layout/AudioPlayer';
@@ -37,6 +38,11 @@ const CapitalOneDashboard: React.FC = () => {
           {activeTab === 'timeSeries' && <TimeSeriesTab />}
           {activeTab === 'features' && <FeaturesTab setActiveTab={setActiveTab} />}
           {activeTab === 'information' && <InformationTab />}
+          {activeTab === 'chatbot' && (
+            <div className="chatbot-dashboard-container">
+              <ChatbotTab />
+            </div>
+          )}
         </main>
       </div>
     </>

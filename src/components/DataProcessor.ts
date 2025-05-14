@@ -77,7 +77,7 @@ class DataProcessor {
           this.isLoaded = true;
           resolve();
         })
-        .catch(error => {
+        .catch((error: Error) => {
           console.error('Error loading CSV data:', error);
           reject(error);
         });
@@ -103,7 +103,7 @@ class DataProcessor {
           complete: (results) => {
             resolve(results.data);
           },
-          error: (error) => {
+          error: (error: Error) => {
             reject(error);
           }
         });
@@ -146,7 +146,7 @@ class DataProcessor {
         });
       });
       
-      results.push(...matchingItems.map(item => ({ ...item, dataType: key })));
+      results.push(...matchingItems.map((item: any) => ({ ...item, dataType: key })));
     });
     
     return results;

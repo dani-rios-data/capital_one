@@ -1,4 +1,3 @@
-import React from 'react';
 import CapitalOneDashboard from './components/CapitalOneDashboard';
 import LoginScreen from './components/Auth/LoginScreen';
 import { useAuth } from './hooks/useAuth';

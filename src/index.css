@@ -1402,3 +1402,9 @@ g.recharts-layer.recharts-bar:hover {
   display: flex;
   align-items: center;
 }
+
+/* Global animations for loading spinners */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
